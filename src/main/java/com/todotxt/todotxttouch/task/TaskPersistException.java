@@ -29,11 +29,11 @@ package com.todotxt.todotxttouch.task;
  */
 @SuppressWarnings("serial")
 public class TaskPersistException extends RuntimeException {
-	public TaskPersistException(String message) {
-		super(message);
-	}
+    public TaskPersistException(String message) {
+        super(message);
+    }
 
-	public TaskPersistException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public TaskPersistException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -28,34 +28,34 @@ import com.chschmid.jdotxt.gui.JdotxtGUI;
 
 @SuppressWarnings("serial")
 public class JdotxtStatusBar extends Box {
-	
-	private JLabel label;
+    
+    private JLabel label;
 
-	public JdotxtStatusBar() {
-		super(BoxLayout.X_AXIS);
-		initGUI();
-	}
-	
-	public JdotxtStatusBar(String text) {
-		super(BoxLayout.X_AXIS);
-		initGUI();
-		setText(text);
-	}
-	
-	private void initGUI() {
-		//ImageIcon border  = Util.createImageIcon("/drawable/statusbar-border.png");
-		//this.setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, border));
-		this.setBackground(JdotxtGUI.COLOR_GRAY_PANEL);
-		this.setOpaque(true);
-		
-		label = new JLabel();
-		label.setFont(JdotxtGUI.fontR);
-		label.setBackground(JdotxtGUI.COLOR_GRAY_PANEL);
-		label.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-		
-		this.add(label);
-	}
-	
-	public void setText(String text) { label.setText(text); }
-	public String getText() { return label.getText(); }
+    public JdotxtStatusBar() {
+        super(BoxLayout.X_AXIS);
+        initGUI();
+    }
+    
+    public JdotxtStatusBar(String text) {
+        super(BoxLayout.X_AXIS);
+        initGUI();
+        setText(text);
+    }
+    
+    private void initGUI() {
+        //ImageIcon border  = Util.createImageIcon("/drawable/statusbar-border.png");
+        //this.setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, border));
+        this.setBackground(JdotxtGUI.COLOR_GRAY_PANEL);
+        this.setOpaque(true);
+        
+        label = new JLabel();
+        label.setFont(JdotxtGUI.fontR);
+        label.setBackground(JdotxtGUI.COLOR_GRAY_PANEL);
+        label.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        
+        this.add(label);
+    }
+    
+    public void setText(String text) { label.setText(text); }
+    public String getText() { return label.getText(); }
 }

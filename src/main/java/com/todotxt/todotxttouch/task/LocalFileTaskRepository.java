@@ -39,123 +39,123 @@ import com.todotxt.todotxttouch.util.Util;
  * @author Tim Barlotta
  */
 public class LocalFileTaskRepository implements LocalTaskRepository {
-	final static String DEFAULTDIR = Jdotxt.DEFAULT_DIR;
-	public static File TODO_TXT_FILE = new File(DEFAULTDIR + File.separator + "todo.txt");
-	public static File DONE_TXT_FILE = new File(DEFAULTDIR + File.separator + "done.txt");
+    final static String DEFAULTDIR = Jdotxt.DEFAULT_DIR;
+    public static File TODO_TXT_FILE = new File(DEFAULTDIR + File.separator + "todo.txt");
+    public static File DONE_TXT_FILE = new File(DEFAULTDIR + File.separator + "done.txt");
 
-	public static void initFiles() {
-		try {
-			if (!TODO_TXT_FILE.exists()) {
-				Util.createParentDirectory(TODO_TXT_FILE);
-				if(!TODO_TXT_FILE.createNewFile()) throw new FileAlreadyExistsException("File already exists");
-			}
-		} catch (FileAlreadyExistsException ignored) {}
-		catch (IOException e) {
-			throw new TodoException("Error initializing LocalFile", e);
-		}
-	}
-	
-	@Override
-	public void init() {
-		try {
-			if (!TODO_TXT_FILE.exists()) {
-				Util.createParentDirectory(TODO_TXT_FILE);
-				TODO_TXT_FILE.createNewFile();
-			}
-		} catch (IOException e) {
-			throw new TodoException("Error initializing LocalFile", e);
-		}
-	}
+    public static void initFiles() {
+        try {
+            if (!TODO_TXT_FILE.exists()) {
+                Util.createParentDirectory(TODO_TXT_FILE);
+                if(!TODO_TXT_FILE.createNewFile()) throw new FileAlreadyExistsException("File already exists");
+            }
+        } catch (FileAlreadyExistsException ignored) {}
+        catch (IOException e) {
+            throw new TodoException("Error initializing LocalFile", e);
+        }
+    }
+    
+    @Override
+    public void init() {
+        try {
+            if (!TODO_TXT_FILE.exists()) {
+                Util.createParentDirectory(TODO_TXT_FILE);
+                TODO_TXT_FILE.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new TodoException("Error initializing LocalFile", e);
+        }
+    }
 
-	@Override
-	public void purge() {
-		TODO_TXT_FILE.delete();
-		DONE_TXT_FILE.delete();
-	}
+    @Override
+    public void purge() {
+        TODO_TXT_FILE.delete();
+        DONE_TXT_FILE.delete();
+    }
 
-	@Override
-	public ArrayList<Task> load() {
-		init();
-		if (!TODO_TXT_FILE.exists()) {
-			//System.out.print(TODO_TXT_FILE.getAbsolutePath() + " does not exist!");
-			throw new TodoException(TODO_TXT_FILE.getAbsolutePath()
-					+ " does not exist!");
-		} else {
-			try {
-				return TaskIo.loadTasksFromFile(TODO_TXT_FILE);
-			} catch (IOException e) {
-				throw new TodoException("Error loading from local file", e);
-			}
-		}
-	}
+    @Override
+    public ArrayList<Task> load() {
+        init();
+        if (!TODO_TXT_FILE.exists()) {
+            //System.out.print(TODO_TXT_FILE.getAbsolutePath() + " does not exist!");
+            throw new TodoException(TODO_TXT_FILE.getAbsolutePath()
+                    + " does not exist!");
+        } else {
+            try {
+                return TaskIo.loadTasksFromFile(TODO_TXT_FILE);
+            } catch (IOException e) {
+                throw new TodoException("Error loading from local file", e);
+            }
+        }
+    }
 
-	@Override
-	public void store(ArrayList<Task> tasks) {
-		TaskIo.writeToFile(tasks, TODO_TXT_FILE);
-	}
+    @Override
+    public void store(ArrayList<Task> tasks) {
+        TaskIo.writeToFile(tasks, TODO_TXT_FILE);
+    }
 
-	@Override
-	public void archive(ArrayList<Task> tasks) {
-		ArrayList<Task> completedTasks = new ArrayList<Task>(tasks.size());
-		ArrayList<Task> incompleteTasks = new ArrayList<Task>(tasks.size());
+    @Override
+    public void archive(ArrayList<Task> tasks) {
+        ArrayList<Task> completedTasks = new ArrayList<Task>(tasks.size());
+        ArrayList<Task> incompleteTasks = new ArrayList<Task>(tasks.size());
 
-		for (Task task : tasks) {
-			if (task.isCompleted()) {
-				completedTasks.add(task);
-			} else {
-				incompleteTasks.add(task);
-			}
-		}
+        for (Task task : tasks) {
+            if (task.isCompleted()) {
+                completedTasks.add(task);
+            } else {
+                incompleteTasks.add(task);
+            }
+        }
 
-		// append completed tasks to done.txt
-		TaskIo.writeToFile(completedTasks, DONE_TXT_FILE, true);
+        // append completed tasks to done.txt
+        TaskIo.writeToFile(completedTasks, DONE_TXT_FILE, true);
 
-		// write incomplete tasks back to todo.txt
-		// TODO: remove blank lines (if we ever add support for
-		// PRESERVE_BLANK_LINES)
-		TaskIo.writeToFile(incompleteTasks, TODO_TXT_FILE, false);
-	}
+        // write incomplete tasks back to todo.txt
+        // TODO: remove blank lines (if we ever add support for
+        // PRESERVE_BLANK_LINES)
+        TaskIo.writeToFile(incompleteTasks, TODO_TXT_FILE, false);
+    }
 
-	@Override
-	public ArrayList<Task> loadDoneTasks() {
-		init();
-		if (!DONE_TXT_FILE.exists()) {
-			//System.out.print(DONE_TXT_FILE.getAbsolutePath() + " does not exist");
-			return new ArrayList<Task>();
-		} else {
-			try {
-				return TaskIo.loadTasksFromFile(DONE_TXT_FILE);
-			} catch (IOException e) {
-				throw new TodoException("Error loading done tasks from local file", e);
-			}
-		}
-	}
+    @Override
+    public ArrayList<Task> loadDoneTasks() {
+        init();
+        if (!DONE_TXT_FILE.exists()) {
+            //System.out.print(DONE_TXT_FILE.getAbsolutePath() + " does not exist");
+            return new ArrayList<Task>();
+        } else {
+            try {
+                return TaskIo.loadTasksFromFile(DONE_TXT_FILE);
+            } catch (IOException e) {
+                throw new TodoException("Error loading done tasks from local file", e);
+            }
+        }
+    }
 
-	@Override
-	public void storeDoneTasks(ArrayList<Task> tasks) {
-		TaskIo.writeToFile(tasks, DONE_TXT_FILE, false);
-	}
+    @Override
+    public void storeDoneTasks(ArrayList<Task> tasks) {
+        TaskIo.writeToFile(tasks, DONE_TXT_FILE, false);
+    }
 
-	@Override
-	public void storeDoneTasks(File file) {
-		Util.renameFile(file, DONE_TXT_FILE, true);
-	}
+    @Override
+    public void storeDoneTasks(File file) {
+        Util.renameFile(file, DONE_TXT_FILE, true);
+    }
 
-	@Override
-	public boolean todoFileModifiedSince(Date date) {
-		long date_ms = 0l;
-		if (date != null) {
-			date_ms = date.getTime();
-		}
-		return date_ms < TODO_TXT_FILE.lastModified();
-	}
+    @Override
+    public boolean todoFileModifiedSince(Date date) {
+        long date_ms = 0l;
+        if (date != null) {
+            date_ms = date.getTime();
+        }
+        return date_ms < TODO_TXT_FILE.lastModified();
+    }
 
-	@Override
-	public boolean doneFileModifiedSince(Date date) {
-		long date_ms = 0l;
-		if (date != null) {
-			date_ms = date.getTime();
-		}
-		return date_ms < DONE_TXT_FILE.lastModified();
-	}
+    @Override
+    public boolean doneFileModifiedSince(Date date) {
+        long date_ms = 0l;
+        if (date != null) {
+            date_ms = date.getTime();
+        }
+        return date_ms < DONE_TXT_FILE.lastModified();
+    }
 }

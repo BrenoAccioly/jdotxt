@@ -43,109 +43,109 @@ import com.todotxt.todotxttouch.task.Task;
  * @author Tim Barlotta
  */
 public class TaskIo {
-	private final static String TAG = TaskIo.class.getSimpleName();
+    private final static String TAG = TaskIo.class.getSimpleName();
 
-	public static final String DEFAULT_ENCODING = "UTF-8";
-	
-	private static boolean sWindowsLineBreaks = false;
-	private static String encoding = DEFAULT_ENCODING;
-	
-	private static String readLine(BufferedReader r) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		boolean eol = false;
-		int c;
-		
-		while(!eol && (c = r.read()) >= 0) {
-			sb.append((char)c);
-			eol = (c == '\r' || c == '\n');
-			
-			// check for \r\n
-			if (c == '\r') {
-				r.mark(1);
-				c = r.read();
-				if (c != '\n') {
-					r.reset();
-				} else {
-					sWindowsLineBreaks = true;
-					sb.append((char)c);
-				}
-			}
-		}
-		return sb.length() == 0 ? null : sb.toString();
-	}
-	
-	public static ArrayList<Task> loadTasksFromFile(File file) throws IOException {
-		ArrayList<Task> items = new ArrayList<Task>();
-		BufferedReader in = null;
-		if (!file.exists()) {
-			System.out.printf(file.getAbsolutePath() + " does not exist!");
-		} else {
-			encoding = detectEncoding(file);
-			InputStream is = new FileInputStream(file);
-			try {
-				in = new BufferedReader(new InputStreamReader(is, encoding));
-				String line;
-				long counter = 0L;
-				sWindowsLineBreaks = false;
-				while ((line = readLine(in)) != null) {
-					line = line.trim();
-					if (line.length() > 0) {
-						items.add(new Task(counter, line));
-					}
-					counter++;
-				}
-			} finally {
-				Util.closeStream(in);
-				Util.closeStream(is);
-			}
-		}
-		return items;
-	}
+    public static final String DEFAULT_ENCODING = "UTF-8";
+    
+    private static boolean sWindowsLineBreaks = false;
+    private static String encoding = DEFAULT_ENCODING;
+    
+    private static String readLine(BufferedReader r) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        boolean eol = false;
+        int c;
+        
+        while(!eol && (c = r.read()) >= 0) {
+            sb.append((char)c);
+            eol = (c == '\r' || c == '\n');
+            
+            // check for \r\n
+            if (c == '\r') {
+                r.mark(1);
+                c = r.read();
+                if (c != '\n') {
+                    r.reset();
+                } else {
+                    sWindowsLineBreaks = true;
+                    sb.append((char)c);
+                }
+            }
+        }
+        return sb.length() == 0 ? null : sb.toString();
+    }
+    
+    public static ArrayList<Task> loadTasksFromFile(File file) throws IOException {
+        ArrayList<Task> items = new ArrayList<Task>();
+        BufferedReader in = null;
+        if (!file.exists()) {
+            System.out.printf(file.getAbsolutePath() + " does not exist!");
+        } else {
+            encoding = detectEncoding(file);
+            InputStream is = new FileInputStream(file);
+            try {
+                in = new BufferedReader(new InputStreamReader(is, encoding));
+                String line;
+                long counter = 0L;
+                sWindowsLineBreaks = false;
+                while ((line = readLine(in)) != null) {
+                    line = line.trim();
+                    if (line.length() > 0) {
+                        items.add(new Task(counter, line));
+                    }
+                    counter++;
+                }
+            } finally {
+                Util.closeStream(in);
+                Util.closeStream(is);
+            }
+        }
+        return items;
+    }
 
-	public static void writeToFile(List<Task> tasks, File file) {
-		writeToFile(tasks, file, false);
-	}
+    public static void writeToFile(List<Task> tasks, File file) {
+        writeToFile(tasks, file, false);
+    }
 
-	public static void writeToFile(List<Task> tasks, File file, boolean append) {
-		try {
-			if (!Util.isDeviceWritable()) {
-				throw new IOException("Device is not writable!");
-			}
-			Util.createParentDirectory(file);
-			OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(file, append), encoding);
-			//FileWriter fw = new FileWriter(file, append);
-			for (int i = 0; i < tasks.size(); ++i) {
-				String fileFormat = tasks.get(i).inFileFormat();
-				fw.write(fileFormat);
-				if (sWindowsLineBreaks) {
-					// Log.v(TAG, "Using Windows line breaks");
-					fw.write("\r\n");
-				} else {
-					// Log.v(TAG, "NOT using Windows line breaks");
-					fw.write("\n");
-				}
-			}
-			fw.close();
-		} catch (Exception e) {
-			System.out.printf(TAG, e.getMessage());
-		}
-	}
-	
-	private static String detectEncoding(File file) throws IOException {
-		byte[] buf = new byte[4096];
+    public static void writeToFile(List<Task> tasks, File file, boolean append) {
+        try {
+            if (!Util.isDeviceWritable()) {
+                throw new IOException("Device is not writable!");
+            }
+            Util.createParentDirectory(file);
+            OutputStreamWriter fw = new OutputStreamWriter(new FileOutputStream(file, append), encoding);
+            //FileWriter fw = new FileWriter(file, append);
+            for (int i = 0; i < tasks.size(); ++i) {
+                String fileFormat = tasks.get(i).inFileFormat();
+                fw.write(fileFormat);
+                if (sWindowsLineBreaks) {
+                    // Log.v(TAG, "Using Windows line breaks");
+                    fw.write("\r\n");
+                } else {
+                    // Log.v(TAG, "NOT using Windows line breaks");
+                    fw.write("\n");
+                }
+            }
+            fw.close();
+        } catch (Exception e) {
+            System.out.printf(TAG, e.getMessage());
+        }
+    }
+    
+    private static String detectEncoding(File file) throws IOException {
+        byte[] buf = new byte[4096];
 
-		FileInputStream  fis = new FileInputStream(file);
-		UniversalDetector detector = new UniversalDetector(null);
-		
-	    int nread;
-	    while ((nread = fis.read(buf)) > 0 && !detector.isDone()) detector.handleData(buf, 0, nread);
+        FileInputStream  fis = new FileInputStream(file);
+        UniversalDetector detector = new UniversalDetector(null);
+        
+        int nread;
+        while ((nread = fis.read(buf)) > 0 && !detector.isDone()) detector.handleData(buf, 0, nread);
 
-	    Util.closeStream(fis);
-	    
-	    detector.dataEnd();
-	    String encoding = detector.getDetectedCharset();
-	    
-	    if (encoding == null) encoding = DEFAULT_ENCODING;
-		return encoding;
-	}
+        Util.closeStream(fis);
+        
+        detector.dataEnd();
+        String encoding = detector.getDetectedCharset();
+        
+        if (encoding == null) encoding = DEFAULT_ENCODING;
+        return encoding;
+    }
 }

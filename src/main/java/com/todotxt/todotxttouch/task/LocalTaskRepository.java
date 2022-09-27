@@ -32,24 +32,24 @@ import java.util.Date;
  * @author Tim Barlotta
  */
 interface LocalTaskRepository {
-	void init();
+    void init();
 
-	void purge();
+    void purge();
 
-	ArrayList<Task> load();
+    ArrayList<Task> load();
 
-	void store(ArrayList<Task> tasks);
+    void store(ArrayList<Task> tasks);
 
-	void archive(ArrayList<Task> tasks);
+    void archive(ArrayList<Task> tasks);
 
-	ArrayList<Task> loadDoneTasks();
+    ArrayList<Task> loadDoneTasks();
 
-	void storeDoneTasks(ArrayList<Task> tasks);
+    void storeDoneTasks(ArrayList<Task> tasks);
 
-	void storeDoneTasks(File file);
+    void storeDoneTasks(File file);
 
-	boolean todoFileModifiedSince(Date date);
+    boolean todoFileModifiedSince(Date date);
 
-	boolean doneFileModifiedSince(Date date);
+    boolean doneFileModifiedSince(Date date);
 
 }

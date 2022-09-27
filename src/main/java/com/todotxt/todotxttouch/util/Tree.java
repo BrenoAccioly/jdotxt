@@ -26,78 +26,78 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tree<E> {
-	private Tree<E> parent = null;
-	private List<Tree<E>> children = null;
-	private E data;
+    private Tree<E> parent = null;
+    private List<Tree<E>> children = null;
+    private E data;
 
-	public Tree(E data) {
-		this.data = data;
-	}
+    public Tree(E data) {
+        this.data = data;
+    }
 
-	public Tree(Tree<E> parent, E data) {
-		this.parent = parent;
-		this.data = data;
-	}
+    public Tree(Tree<E> parent, E data) {
+        this.parent = parent;
+        this.data = data;
+    }
 
-	public Tree<E> addChild(Tree<E> child) {
-		if (children == null) {
-			children = new ArrayList<Tree<E>>();
-		}
-		children.add(child);
-		child.parent = this;
-		return child;
-	}
+    public Tree<E> addChild(Tree<E> child) {
+        if (children == null) {
+            children = new ArrayList<Tree<E>>();
+        }
+        children.add(child);
+        child.parent = this;
+        return child;
+    }
 
-	public Tree<E> addChild(E data) {
-		Tree<E> child = new Tree<E>(data);
-		return addChild(child);
-	}
+    public Tree<E> addChild(E data) {
+        Tree<E> child = new Tree<E>(data);
+        return addChild(child);
+    }
 
-	public E getData() {
-		return data;
-	}
+    public E getData() {
+        return data;
+    }
 
-	public Tree<E> getParent() {
-		return parent;
-	}
+    public Tree<E> getParent() {
+        return parent;
+    }
 
-	public boolean isLoaded() {
-		return children != null;
-	}
+    public boolean isLoaded() {
+        return children != null;
+    }
 
-	public void setLoaded() {
-		if (children == null) {
-			children = new ArrayList<Tree<E>>();
-		}
-	}
+    public void setLoaded() {
+        if (children == null) {
+            children = new ArrayList<Tree<E>>();
+        }
+    }
 
-	public List<Tree<E>> getChildren() {
-		return children;
-	}
+    public List<Tree<E>> getChildren() {
+        return children;
+    }
 
-	public boolean contains(Tree<E> child) {
-		if (children == null) {
-			return false;
-		}
+    public boolean contains(Tree<E> child) {
+        if (children == null) {
+            return false;
+        }
 
-		return children.contains(child);
-	}
+        return children.contains(child);
+    }
 
-	public boolean contains(E data) {
-		if (children == null) {
-			return false;
-		}
-		
-		for(Tree<E> child : children) {
-			if (child.getData().equals(data)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
+    public boolean contains(E data) {
+        if (children == null) {
+            return false;
+        }
+        
+        for(Tree<E> child : children) {
+            if (child.getData().equals(data)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 
-	public Tree<E> getChild(int position) {
-		return children.get(position);
-	}
+    public Tree<E> getChild(int position) {
+        return children.get(position);
+    }
 }
