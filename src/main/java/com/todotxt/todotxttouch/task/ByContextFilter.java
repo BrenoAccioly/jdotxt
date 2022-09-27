@@ -31,38 +31,38 @@ import java.util.List;
  * @author Tim Barlotta
  */
 class ByContextFilter implements Filter<Task> {
-	private ArrayList<String> contexts = new ArrayList<String>();
+    private ArrayList<String> contexts = new ArrayList<String>();
 
-	public ByContextFilter(List<String> contexts) {
-		if (contexts != null) {
-			this.contexts.addAll(contexts);
-		}
-	}
+    public ByContextFilter(List<String> contexts) {
+        if (contexts != null) {
+            this.contexts.addAll(contexts);
+        }
+    }
 
-	@Override
-	public boolean apply(Task input) {
-		if (contexts.size() == 0) {
-			return true;
-		}
+    @Override
+    public boolean apply(Task input) {
+        if (contexts.size() == 0) {
+            return true;
+        }
 
-		for (String c : input.getContexts()) {
-			if (contexts.contains(c)) {
-				return true;
-			}
-		}
-		/*
-		 * Match tasks without context if filter contains "-"
-		 */
-		if (input.getContexts().size()==0 && contexts.contains("-")) {
-			return true;
-		}
+        for (String c : input.getContexts()) {
+            if (contexts.contains(c)) {
+                return true;
+            }
+        }
+        /*
+         * Match tasks without context if filter contains "-"
+         */
+        if (input.getContexts().size()==0 && contexts.contains("-")) {
+            return true;
+        }
 
-		return false;
+        return false;
 
-	}
+    }
 
-	/* FOR TESTING ONLY, DO NOT USE IN APPLICATION */
-	ArrayList<String> getContexts() {
-		return contexts;
-	}
+    /* FOR TESTING ONLY, DO NOT USE IN APPLICATION */
+    ArrayList<String> getContexts() {
+        return contexts;
+    }
 }

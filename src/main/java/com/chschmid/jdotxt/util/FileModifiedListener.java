@@ -20,5 +20,5 @@
 package com.chschmid.jdotxt.util;
 
 public interface FileModifiedListener {
-	public void fileModified();
+    public void fileModified();
 }

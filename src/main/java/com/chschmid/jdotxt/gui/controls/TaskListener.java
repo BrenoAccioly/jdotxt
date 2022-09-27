@@ -22,10 +22,10 @@ package com.chschmid.jdotxt.gui.controls;
 import com.todotxt.todotxttouch.task.Task;
 
 public interface TaskListener {
-	public void taskCreated(Task t);
-	public void taskUpdated(Task t, short field);
-	public void taskDeleted(Task t);
-	public void enterPressed(Task t, short field);
-	public void focusGained(Task t, short field);
-	public void focusLost(Task t, short field);
+    public void taskCreated(Task t);
+    public void taskUpdated(Task t, short field);
+    public void taskDeleted(Task t);
+    public void enterPressed(Task t, short field);
+    public void focusGained(Task t, short field);
+    public void focusLost(Task t, short field);
 }

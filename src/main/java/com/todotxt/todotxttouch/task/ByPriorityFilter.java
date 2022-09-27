@@ -31,28 +31,28 @@ import java.util.List;
  * @author Tim Barlotta
  */
 class ByPriorityFilter implements Filter<Task> {
-	ArrayList<Priority> priorities = new ArrayList<Priority>();
+    ArrayList<Priority> priorities = new ArrayList<Priority>();
 
-	public ByPriorityFilter(List<Priority> priorities) {
-		if (priorities != null) {
-			this.priorities.addAll(priorities);
-		}
-	}
+    public ByPriorityFilter(List<Priority> priorities) {
+        if (priorities != null) {
+            this.priorities.addAll(priorities);
+        }
+    }
 
-	@Override
-	public boolean apply(Task input) {
-		if (priorities.size() == 0) {
-			return true;
-		}
+    @Override
+    public boolean apply(Task input) {
+        if (priorities.size() == 0) {
+            return true;
+        }
 
-		if (priorities.contains(input.getPriority())) {
-			return true;
-		}
-		return false;
-	}
+        if (priorities.contains(input.getPriority())) {
+            return true;
+        }
+        return false;
+    }
 
-	/* FOR TESTING ONLY, DO NOT USE IN APPLICATION */
-	ArrayList<Priority> getPriorities() {
-		return priorities;
-	}
+    /* FOR TESTING ONLY, DO NOT USE IN APPLICATION */
+    ArrayList<Priority> getPriorities() {
+        return priorities;
+    }
 }

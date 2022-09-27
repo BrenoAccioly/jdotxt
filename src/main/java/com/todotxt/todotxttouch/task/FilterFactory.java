@@ -33,35 +33,35 @@ import com.todotxt.todotxttouch.util.Strings;
  */
 public class FilterFactory {
 
-	public static Filter<Task> generateAndFilter(List<Priority> priorities,
-			List<String> contexts, List<String> projects, String text,
-			boolean caseSensitive, boolean showHidden, boolean showThreshold) {
-		AndFilter filter = new AndFilter();
+    public static Filter<Task> generateAndFilter(List<Priority> priorities,
+            List<String> contexts, List<String> projects, String text,
+            boolean caseSensitive, boolean showHidden, boolean showThreshold) {
+        AndFilter filter = new AndFilter();
 
-		if (priorities.size() > 0) {
-			filter.addFilter(new ByPriorityFilter(priorities));
-		}
+        if (priorities.size() > 0) {
+            filter.addFilter(new ByPriorityFilter(priorities));
+        }
 
-		if (contexts.size() > 0) {
-			filter.addFilter(new ByContextFilter(contexts));
-		}
+        if (contexts.size() > 0) {
+            filter.addFilter(new ByContextFilter(contexts));
+        }
 
-		if (projects.size() > 0) {
-			filter.addFilter(new ByProjectFilter(projects));
-		}
+        if (projects.size() > 0) {
+            filter.addFilter(new ByProjectFilter(projects));
+        }
 
-		if (!Strings.isEmptyOrNull(text)) {
-			filter.addFilter(new ByTextFilter(text, caseSensitive));
-		}
+        if (!Strings.isEmptyOrNull(text)) {
+            filter.addFilter(new ByTextFilter(text, caseSensitive));
+        }
 
-		if (!showHidden) {
-			filter.addFilter(new HiddenFilter());
-		}
+        if (!showHidden) {
+            filter.addFilter(new HiddenFilter());
+        }
 
-		if (!showThreshold) {
-			filter.addFilter(new ThresholdDateFilter());
-		}
-		return filter;
-	}
+        if (!showThreshold) {
+            filter.addFilter(new ThresholdDateFilter());
+        }
+        return filter;
+    }
 
 }

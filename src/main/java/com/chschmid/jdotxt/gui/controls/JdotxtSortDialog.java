@@ -12,11 +12,13 @@ import java.util.*;
 public class JdotxtSortDialog extends JDialog {
 
     Map<Sorters, Boolean> sort;
-    private Vector<Vector> sortDisplay, addDisplay;
+    private Vector<Vector> sortDisplay;
+    private Vector<Vector> addDisplay;
     private Vector<Map.Entry<Sorters, Boolean>> sortList = new Vector<>();
     private Vector<Sorters> addList = new Vector<>();
 
-    private JTable current, add;
+    private JTable current;
+    private JTable add;
     private JButton saveButton;
     private JTextField name;
     private String nameStr;
