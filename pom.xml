@@ -69,6 +69,9 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
                 <version>4.7.2.0</version>
             </plugin>
 
@@ -137,6 +140,9 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
                 <version>4.7.2.0</version>
             </plugin>
         </plugins>
