@@ -164,23 +164,23 @@ public class Task implements Serializable {
     }
 
     public List<String> getContexts() {
-        return contexts;
+        return new ArrayList<>(contexts);
     }
 
     public List<URL> getLinks() {
-        return links;
+        return new ArrayList<>(links);
     }
 
     public List<String> getPhoneNumbers() {
-        return phoneNumbers;
+        return new ArrayList<>(phoneNumbers);
     }
 
     public List<String> getProjects() {
-        return projects;
+        return new ArrayList<>(projects);
     }
 
     public List<String> getMailAddresses() {
-        return mailAddresses;
+        return new ArrayList<>(mailAddresses);
     }
 
     public String getPrependedDate() {
@@ -204,11 +204,11 @@ public class Task implements Serializable {
     }
 
     public Date getThresholdDate() {
-        return thresholdDate;
+        return new Date(thresholdDate.getTime());
     }
 
     public Date getDueDate() {
-        return dueDate;
+        return new Date(dueDate.getTime());
     }
 
     public String getCompletionDate() {

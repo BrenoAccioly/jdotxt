@@ -28,7 +28,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -101,11 +103,12 @@ public class Util {
             return null;
         }
         try {
-            int c;
             byte[] buffer = new byte[8192];
             StringBuilder sb = new StringBuilder();
-            while ((c = is.read(buffer)) != -1) {
-                sb.append(new String(buffer, 0, c));
+            while (is.read(buffer) != -1) {
+                sb.append(
+                        StandardCharsets.UTF_8.decode(ByteBuffer.wrap(buffer))
+                );
             }
             return sb.toString();
         } catch (Throwable e) {
@@ -269,7 +272,8 @@ public class Util {
             throw new TodoException("createParentDirectory: dest is null");
         }
         File dir = dest.getParentFile();
-        if (dir != null && !dir.exists()) {
+        if(dir == null) return;
+        if (!dir.exists()) {
             createParentDirectory(dir);
         }
         if (!dir.exists()) {

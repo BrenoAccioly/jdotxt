@@ -83,6 +83,15 @@
             </plugin>
 
             <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
+                <version>4.7.2.0</version>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
@@ -151,6 +160,15 @@
                 <configuration>
                     <configLocation>${basedir}/rulesets/checkstyle-rules.xml</configLocation>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
+                <version>4.7.2.0</version>
             </plugin>
         </plugins>
     </reporting>

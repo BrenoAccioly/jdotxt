@@ -42,8 +42,8 @@ import com.todotxt.todotxttouch.util.Util;
 
 @SuppressWarnings("serial")
 public class JdotxtGUItest extends JFrame {
-    public static int MIN_WIDTH = 640;
-    public static int MIN_HEIGHT = 480;
+    public final static int MIN_WIDTH = 640;
+    public final static int MIN_HEIGHT = 480;
     
     ImageIcon iconSave     = Util.createImageIcon("/drawable/save.png");
     public static final ImageIcon selected   = Util.createImageIcon("/drawable/check.png");

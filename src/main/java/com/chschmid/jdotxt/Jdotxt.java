@@ -138,13 +138,13 @@ public class Jdotxt {
         }
     }
 
+
     public static void addFileModifiedListener(FileModifiedListener fileModifiedListener) {
         fileModifiedWatcher.addFileModifiedListener(fileModifiedListener);
     }
     public static void removeFileModifiedListener(FileModifiedListener fileModifiedListener) {
         fileModifiedWatcher.removeFileModifiedListener(fileModifiedListener);
     }
-
 
     public static void archiveTodos() {
         synchronized(fileLock){
@@ -156,6 +156,7 @@ public class Jdotxt {
             }
         }
     }
+
     public static void storeTodos() {
         synchronized(fileLock){
             fileModifiedWatcher.unRegisterFile();
@@ -166,7 +167,6 @@ public class Jdotxt {
             }
         }
     }
-
     // Detect OS
     public static boolean isWindows() {    return System.getProperty("os.name").startsWith("Windows"); }
     public static boolean isMacOSX() { return System.getProperty("os.name").startsWith("Mac OS X"); }
