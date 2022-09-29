@@ -1,6 +1,7 @@
 package com.chschmid.jdotxt.gui.controls;
 
 import com.chschmid.jdotxt.gui.JdotxtGUI;
+import com.chschmid.jdotxt.gui.utils.UtilGUI;
 import com.todotxt.todotxttouch.task.sorter.Sorters;
 
 import javax.swing.*;
@@ -208,7 +209,7 @@ public class JdotxtSortDialog extends JDialog {
     }
 
     public JButton getOk() {
-        return ok;
+        return (JButton) UtilGUI.cloneObject(ok);
     }
     static class EditDisabledTableModel extends DefaultTableModel {
 
@@ -237,7 +238,7 @@ public class JdotxtSortDialog extends JDialog {
 
 
     public JButton getSaveButton() {
-        return saveButton;
+        return (JButton) UtilGUI.cloneObject(saveButton);
     }
 
     public String getSortName() {

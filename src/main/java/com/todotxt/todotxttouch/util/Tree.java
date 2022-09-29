@@ -30,6 +30,12 @@ public class Tree<E> {
     private List<Tree<E>> children = null;
     private E data;
 
+    public Tree(Tree<E> tree) {
+        this.parent = tree.parent;
+        this.children = tree.children;
+        this.data = tree.data;
+    }
+
     public Tree(E data) {
         this.data = data;
     }
@@ -58,7 +64,7 @@ public class Tree<E> {
     }
 
     public Tree<E> getParent() {
-        return parent;
+        return new Tree<>(parent);
     }
 
     public boolean isLoaded() {
@@ -72,7 +78,7 @@ public class Tree<E> {
     }
 
     public List<Tree<E>> getChildren() {
-        return children;
+        return new ArrayList<>(children);
     }
 
     public boolean contains(Tree<E> child) {

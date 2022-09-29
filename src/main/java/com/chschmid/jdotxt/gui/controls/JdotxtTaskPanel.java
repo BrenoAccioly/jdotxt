@@ -45,6 +45,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultEditorKit;
 
 import com.chschmid.jdotxt.gui.JdotxtGUI;
+import com.chschmid.jdotxt.gui.utils.UtilGUI;
 import com.todotxt.todotxttouch.task.Priority;
 import com.todotxt.todotxttouch.task.Task;
 import com.todotxt.todotxttouch.util.Util;
@@ -311,7 +312,7 @@ public class JdotxtTaskPanel extends JPanel {
     }
     
     public Task getTask() {
-        return task;
+        return (Task) UtilGUI.cloneObject(task);
     }
     
     public void addTaskListener(TaskListener taskListener) { taskListenerList.add(taskListener); }

@@ -21,6 +21,7 @@ package com.chschmid.jdotxt.gui.controls;
 
 import com.chschmid.jdotxt.Jdotxt;
 import com.chschmid.jdotxt.gui.JdotxtGUI;
+import com.chschmid.jdotxt.gui.utils.UtilGUI;
 import com.todotxt.todotxttouch.util.Util;
 
 import javax.swing.*;
@@ -130,30 +131,30 @@ public class JdotxtToolbar extends Box{
     }
     
     // GUI element getters
-    public JdotxtImageButton getButtonSave()      { return buttonSave; }
-    public JdotxtImageButton getButtonReload()   { return buttonReload; }
-    public JdotxtImageButton getButtonArchive()   { return buttonArchive; }
-    public JdotxtImageButton getButtonSettings()  { return buttonSettings; }
-    public SearchField       getTextfieldSearch() { return textfieldSearch; }
-    public JdotxtImageButton getButtonSort()       { return buttonSort; }
+    public JdotxtImageButton getButtonSave()      { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSave); }
+    public JdotxtImageButton getButtonReload()   { return (JdotxtImageButton) UtilGUI.cloneObject(buttonReload); }
+    public JdotxtImageButton getButtonArchive()   { return (JdotxtImageButton) UtilGUI.cloneObject(buttonArchive); }
+    public JdotxtImageButton getButtonSettings()  { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSettings); }
+    public SearchField       getTextfieldSearch() { return  (SearchField) UtilGUI.cloneObject(textfieldSearch); }
+    public JdotxtImageButton getButtonSort()       { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSort); }
     public JdotxtToggleImageButton getToggleHide() {
-        return toggleHide;
+        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleHide);
     }
 
     public JdotxtToggleImageButton getToggleFuture() {
-        return toggleFuture;
+        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleFuture);
     }
 
     public JdotxtToggleImageButton getTogglePrepend() {
-        return togglePrepend;
+        return (JdotxtToggleImageButton) UtilGUI.cloneObject(togglePrepend);
     }
 
     public JdotxtToggleImageButton getToggleCopy() {
-        return toggleCopy;
+        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleCopy);
     }
 
     public JdotxtCombobox getFileLocationCombobox() {
-        return fileLocationCombobox;
+        return (JdotxtCombobox) UtilGUI.cloneObject(fileLocationCombobox);
     }
 
     // Enable/disable all controls
@@ -174,7 +175,7 @@ public class JdotxtToolbar extends Box{
     }
 
     public JdotxtCombobox getSavedSortCombobox() {
-        return savedSortCombobox;
+        return (JdotxtCombobox) UtilGUI.cloneObject(savedSortCombobox);
     }
 
     // The search box

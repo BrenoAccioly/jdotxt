@@ -96,7 +96,9 @@ public class Jdotxt {
 
                     // Try to create path
                     todoFileDir = new File(userPrefs.get("dataDir", DEFAULT_DIR));
-                    todoFileDir.mkdirs();
+                    try {
+                        if (!todoFileDir.mkdirs()) throw new IOException("Unable to create directory");
+                    } catch (IOException ignored) {}
 
                     showDialog = !todoFileDir.exists();
                 }

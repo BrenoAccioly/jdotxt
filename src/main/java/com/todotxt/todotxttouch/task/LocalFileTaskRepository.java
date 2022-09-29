@@ -25,6 +25,7 @@ package com.todotxt.todotxttouch.task;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.FileSystemException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -60,17 +61,20 @@ public class LocalFileTaskRepository implements LocalTaskRepository {
         try {
             if (!TODO_TXT_FILE.exists()) {
                 Util.createParentDirectory(TODO_TXT_FILE);
-                TODO_TXT_FILE.createNewFile();
+                if(!TODO_TXT_FILE.createNewFile()) throw new FileAlreadyExistsException("File already exists");
             }
-        } catch (IOException e) {
+        } catch (FileAlreadyExistsException ignored) {}
+        catch (IOException e) {
             throw new TodoException("Error initializing LocalFile", e);
         }
     }
 
     @Override
     public void purge() {
-        TODO_TXT_FILE.delete();
-        DONE_TXT_FILE.delete();
+        try {
+            if(!TODO_TXT_FILE.delete()) throw new FileSystemException("Unable to delete file");
+            if(!DONE_TXT_FILE.delete()) throw new FileSystemException("Unable to delete file");
+        } catch(FileSystemException ignored) {}
     }
 
     @Override
