@@ -1,9 +1,9 @@
 package com.todotxt.todotxttouch.util;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class StringsTest {
 
@@ -43,5 +43,32 @@ public class StringsTest {
 
         String result = Strings.insertPadded(s,insertAt,toInsert);
         assertEquals("12 3 4",result);
+    }
+    @Test
+    public void nullIsBlankTest() {
+        String s = null;
+        boolean result = Strings.isBlank(s);
+        assertTrue(result);
+    }
+
+    @Test
+    public void emptyIsBlankTest() {
+        String s = "";
+        boolean result = Strings.isBlank(s);
+        assertTrue(result);
+    }
+
+    @Test
+    public void whitespaceOnlyIsBlankTest() {
+        String s = "    ";
+        boolean result = Strings.isBlank(s);
+        assertTrue(result);
+    }
+
+    @Test
+    public void regularStringIsNotBlankTest() {
+        String s = "    a   ";
+        boolean result = Strings.isBlank(s);
+        assertFalse(result);
     }
 }
