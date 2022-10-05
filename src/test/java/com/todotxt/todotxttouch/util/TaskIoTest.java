@@ -18,48 +18,55 @@ import static org.junit.Assert.*;
 public class TaskIoTest {
 
     public static class ReadLineTest {
-        //readLine method and sWindowsLineBreaks must be set to public in order to test these functions.
+
+        // readLine method and sWindowsLineBreaks must be set to public in order to test these functions.
 
         @Test
         public void UnixLineBreakTest() throws NoSuchMethodException {
+            // Given
             StringReader sr = new StringReader("Test string\n");
             BufferedReader reader = new BufferedReader(sr);
-
+            String returnString;
+            // When
             try {
-                TaskIo.readLine(reader);
+                returnString = TaskIo.readLine(reader);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
+            // Then
             assertFalse(TaskIo.sWindowsLineBreaks);
+            assertEquals(returnString, "Test string\n");
         }
 
         @Test
         public void WindowsLineBreakTest() throws NoSuchMethodException {
+            // Given
             StringReader sr = new StringReader("Test string\r\n");
             BufferedReader reader = new BufferedReader(sr);
-
+            String returnString;
+            // When
             try {
-                TaskIo.readLine(reader);
+                returnString = TaskIo.readLine(reader);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
+            // Then
             assertTrue(TaskIo.sWindowsLineBreaks);
+            assertEquals(returnString, "Test string\r\n");
         }
 
-    /* Throws unexpected exception
-    @Test
-    public void nullBufferTest() throws NoSuchMethodException {
-
-        try {
-            TaskIo.readLine(null);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        /* Throws unexpected exception
+        @Test
+        public void nullBufferTest() throws NoSuchMethodException {
+            try {
+                TaskIo.readLine(null);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-
-    }
-    */
+        */
     }
 
     public static class LoadTasksTest {
@@ -78,7 +85,7 @@ public class TaskIoTest {
         @Test()
         public void loadNonExistentFile() {
             // Given
-            File file = new File("unknownFile");
+            File file = new File("./unknownFile");
             ArrayList<Task> tasks = null;
             // When
             try {
@@ -98,7 +105,7 @@ public class TaskIoTest {
             ArrayList<Task> tasksToWrite = new ArrayList<>();
             tasksToWrite.add(task1);
             tasksToWrite.add(task2);
-            File file = new File("tasksFile");
+            File file = new File("./tasksFile");
             TaskIo.writeToFile(tasksToWrite, file);
             ArrayList<Task> tasksResult = null;
 
@@ -121,7 +128,7 @@ public class TaskIoTest {
         public void loadEmptyFile() {
             // Given
             ArrayList<Task> tasksToWrite = new ArrayList<>();
-            File file = new File("emptyTasksFile");
+            File file = new File("./emptyTasksFile");
             TaskIo.writeToFile(tasksToWrite, file);
             ArrayList<Task> tasksResult = null;
 

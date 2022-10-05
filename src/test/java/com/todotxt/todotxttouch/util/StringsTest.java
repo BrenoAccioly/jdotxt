@@ -3,6 +3,8 @@ package com.todotxt.todotxttouch.util;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class StringsTest {
@@ -20,16 +22,23 @@ public class StringsTest {
         // Then
         assertEquals("12 3 4",result);
     }
+
     /* Commented because it throws an unexpected error
     @Test
     public void outBoundsInsertionPoint() {
+        // Given
         String s = "124";
         int insertAt = 4;
         String toInsert = "3";
+
+        // When
         String result = Strings.insertPadded(s,insertAt,toInsert);
+
+        // Then
         assertEquals("12 3 4",result);
     }
     */
+
     @Test
     public void spaceInBothEndsTest() {
         // Given
