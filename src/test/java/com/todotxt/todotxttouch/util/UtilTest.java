@@ -1,6 +1,9 @@
 package com.todotxt.todotxttouch.util;
 
 import org.junit.Test;
+
+import javax.swing.*;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -47,5 +50,19 @@ public class UtilTest {
         assertEquals(array[0], 1);
         assertEquals(array[1], 2);
         assertEquals(array[2], 3);
+    }
+
+    @Test
+    public void resourceExistsTest() {
+        String resourcePath = "/drawable/about.png";
+        ImageIcon icon = Util.createImageIcon(resourcePath);
+        assertNotEquals(null,icon);
+    }
+
+    @Test
+    public void resourceDoesntExistsTest() {
+        String resourcePath = "/drawable/UNDEFINED.png";
+        ImageIcon icon = Util.createImageIcon(resourcePath);
+        assertEquals(null,icon);
     }
 }

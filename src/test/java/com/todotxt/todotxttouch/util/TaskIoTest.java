@@ -14,59 +14,8 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TaskIoTest.ReadLineTest.class, TaskIoTest.LoadTasksTest.class })
+@Suite.SuiteClasses({TaskIoTest.LoadTasksTest.class })
 public class TaskIoTest {
-
-    public static class ReadLineTest {
-
-        // readLine method and sWindowsLineBreaks must be set to public in order to test these functions.
-
-        @Test
-        public void UnixLineBreakTest() {
-            // Given
-            StringReader sr = new StringReader("Test string\n");
-            BufferedReader reader = new BufferedReader(sr);
-            String returnString;
-            // When
-            try {
-                returnString = TaskIo.readLine(reader);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            // Then
-            assertFalse(TaskIo.sWindowsLineBreaks);
-            assertEquals(returnString, "Test string\n");
-        }
-
-        @Test
-        public void WindowsLineBreakTest() {
-            // Given
-            StringReader sr = new StringReader("Test string\r\n");
-            BufferedReader reader = new BufferedReader(sr);
-            String returnString;
-            // When
-            try {
-                returnString = TaskIo.readLine(reader);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            // Then
-            assertTrue(TaskIo.sWindowsLineBreaks);
-            assertEquals(returnString, "Test string\r\n");
-        }
-
-        // Throws unexpected exception
-        @Test
-        public void nullBufferTest() {
-            try {
-                TaskIo.readLine(null);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     public static class LoadTasksTest {
         // Throws unexpected exception

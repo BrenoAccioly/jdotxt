@@ -47,10 +47,10 @@ public class TaskIo {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
     
-    public static boolean sWindowsLineBreaks = false;
+    private static boolean sWindowsLineBreaks = false;
     private static String encoding = DEFAULT_ENCODING;
     
-    public static String readLine(BufferedReader r) throws IOException {
+    private static String readLine(BufferedReader r) throws IOException {
         StringBuilder sb = new StringBuilder();
         boolean eol = false;
         int c;
