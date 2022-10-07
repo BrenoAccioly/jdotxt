@@ -22,7 +22,7 @@ public class TaskIoTest {
         // readLine method and sWindowsLineBreaks must be set to public in order to test these functions.
 
         @Test
-        public void UnixLineBreakTest() throws NoSuchMethodException {
+        public void UnixLineBreakTest() {
             // Given
             StringReader sr = new StringReader("Test string\n");
             BufferedReader reader = new BufferedReader(sr);
@@ -40,7 +40,7 @@ public class TaskIoTest {
         }
 
         @Test
-        public void WindowsLineBreakTest() throws NoSuchMethodException {
+        public void WindowsLineBreakTest() {
             // Given
             StringReader sr = new StringReader("Test string\r\n");
             BufferedReader reader = new BufferedReader(sr);
@@ -57,20 +57,20 @@ public class TaskIoTest {
             assertEquals(returnString, "Test string\r\n");
         }
 
-        /* Throws unexpected exception
+        // Throws unexpected exception
         @Test
-        public void nullBufferTest() throws NoSuchMethodException {
+        public void nullBufferTest() {
             try {
                 TaskIo.readLine(null);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        */
     }
 
     public static class LoadTasksTest {
-        @Test(expected = NullPointerException.class)
+        // Throws unexpected exception
+        @Test
         public void loadNullFile() {
             // Given
             File file = null;
@@ -82,7 +82,7 @@ public class TaskIoTest {
             }
         }
 
-        @Test()
+        @Test
         public void loadNonExistentFile() {
             // Given
             File file = new File("./unknownFile");
@@ -97,7 +97,7 @@ public class TaskIoTest {
             assertTrue(tasks.isEmpty());
         }
 
-        @Test()
+        @Test
         public void loadNotEmptyFile() {
             // Given
             Task task1 = new Task(0, "x 2022-10-03 Task 1");
@@ -124,7 +124,7 @@ public class TaskIoTest {
             file.delete();
         }
 
-        @Test()
+        @Test
         public void loadEmptyFile() {
             // Given
             ArrayList<Task> tasksToWrite = new ArrayList<>();

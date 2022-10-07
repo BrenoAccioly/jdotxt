@@ -23,7 +23,7 @@ public class StringsTest {
         assertEquals("12 3 4",result);
     }
 
-    /* Commented because it throws an unexpected error
+    // Throws an unexpected error
     @Test
     public void outBoundsInsertionPoint() {
         // Given
@@ -37,7 +37,6 @@ public class StringsTest {
         // Then
         assertEquals("12 3 4",result);
     }
-    */
 
     @Test
     public void spaceInBothEndsTest() {
