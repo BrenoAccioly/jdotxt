@@ -60,7 +60,7 @@ public class UtilTest {
     }
 
     @Test
-    public void resourceDoesntExistsTest() {
+    public void resourceDoesNotExistsTest() {
         String resourcePath = "/drawable/UNDEFINED.png";
         ImageIcon icon = Util.createImageIcon(resourcePath);
         assertEquals(null,icon);
