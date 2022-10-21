@@ -33,34 +33,67 @@ public class StringsTest {
             // Given
             String s = "";
             int insertAt = 0;
-            String toInsert = "1";
+            String toInsertEmpty = "";
+            String toInsertNotEmpty = "1";
 
             // When
-            String result = Strings.insertPadded(s, insertAt, toInsert);
+            String result1 = Strings.insertPadded(s, insertAt, toInsertEmpty);
+            String result2 = Strings.insertPadded(s, insertAt, toInsertNotEmpty);
 
             // Then
-            assertEquals("1 ", result); // TODO is it supposed to be like this
+            assertEquals("", result1);
+            assertEquals("1", result2);
         }
 
         @Test
-        public void baseStringIsNotEmpty() {
+        public void spaceInInsertAtTest() {
             // Given
-            String s = "1";
-            int insertAt = 1;
-            String toInsert = "2";
+            String s = "12 4";
+            int insertAt = 2;
+            String toInsert = "3";
 
             // When
             String result = Strings.insertPadded(s, insertAt, toInsert);
 
             // Then
-            assertEquals("1 2 ", result);
+            assertEquals("12 3 4", result);
+        }
+
+        @Test
+        public void spaceInBothEndsTest() {
+            // Given
+            String s = "12 4";
+            int insertAtLeft = 1, insertAtRight = 3;
+            String toInsert = "3";
+
+            // When
+            String resultLeft = Strings.insertPadded(s, insertAtLeft, toInsert);
+            String resultRight = Strings.insertPadded(s, insertAtRight, toInsert);
+
+            // Then
+            assertEquals("1 3 2 4", resultLeft);
+            assertEquals("12 3 4", resultRight);
+        }
+
+        @Test
+        public void noSpaceInBothEndsTest() {
+            // Given
+            String s = "124";
+            int insertAt = 1;
+            String toInsert = "3";
+
+            // When
+            String result = Strings.insertPadded(s, insertAt, toInsert);
+
+            // Then
+            assertEquals("1 3 24", result);
         }
 
         @Test
         public void inBoundsInsertionPoint() {
             // Given
             String s = "124";
-            int insertAtLowerBound = 0, insertAtUpperBound = 2;
+            int insertAtLowerBound = 0, insertAtUpperBound = 3;
             String toInsert = "3";
 
             // When
@@ -69,7 +102,7 @@ public class StringsTest {
 
             // Then
             assertEquals("3 124", resultLowerBound);
-            assertEquals("12 3 4", resultUpperBound);
+            assertEquals("124 3", resultUpperBound);
         }
 
         // Throws an unexpected error
@@ -97,34 +130,6 @@ public class StringsTest {
         }
 
         @Test
-        public void spaceInBothEndsTest() {
-            // Given
-            String s = "12  4";
-            int insertAt = 3;
-            String toInsert = "3";
-
-            // Then
-            String result = Strings.insertPadded(s, insertAt, toInsert);
-
-            // When
-            assertEquals("12 3 4", result);
-        }
-
-        @Test
-        public void spaceInStartTest() {
-            // Given
-            String s = "12 4";
-            int insertAt = 2;
-            String toInsert = "3";
-
-            // When
-            String result = Strings.insertPadded(s, insertAt, toInsert);
-
-            // Then
-            assertEquals("12 3 4", result);
-        }
-
-        @Test
         public void stringToInsertIsNull() {
             // Given
             String s = "1";
@@ -141,21 +146,23 @@ public class StringsTest {
         @Test
         public void stringToInsertIsEmpty() {
             // Given
-            String s = "1";
+            String sEmpty = "", sNotEmpty = "1";
             int insertAt = 1;
             String toInsert = "";
 
             // When
-            String result = Strings.insertPadded(s, insertAt, toInsert);
+            String result1 = Strings.insertPadded(sEmpty, insertAt, toInsert);
+            String result2 = Strings.insertPadded(sNotEmpty, insertAt, toInsert);
 
             // Then
-            assertEquals("1", result);
+            assertEquals("", result1);
+            assertEquals("1", result2);
         }
 
         @Test
         public void stringToInsertIsNotEmpty() {
             // Given
-            String s = "1";
+            String s = "13";
             int insertAt = 1;
             String toInsert = "2";
 
@@ -163,7 +170,7 @@ public class StringsTest {
             String result = Strings.insertPadded(s, insertAt, toInsert);
 
             // Then
-            assertEquals("1 2 ", result);
+            assertEquals("1 2 3", result);
         }
     }
 
