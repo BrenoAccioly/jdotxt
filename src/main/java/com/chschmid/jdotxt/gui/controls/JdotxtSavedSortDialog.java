@@ -131,6 +131,6 @@ public class JdotxtSavedSortDialog extends JDialog {
     }
 
     public JButton getOk() {
-        return (JButton) UtilGUI.cloneObject(ok);
+        return ok;
     }
 }

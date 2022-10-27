@@ -131,30 +131,30 @@ public class JdotxtToolbar extends Box{
     }
     
     // GUI element getters
-    public JdotxtImageButton getButtonSave()      { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSave); }
-    public JdotxtImageButton getButtonReload()   { return (JdotxtImageButton) UtilGUI.cloneObject(buttonReload); }
-    public JdotxtImageButton getButtonArchive()   { return (JdotxtImageButton) UtilGUI.cloneObject(buttonArchive); }
-    public JdotxtImageButton getButtonSettings()  { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSettings); }
-    public SearchField       getTextfieldSearch() { return  (SearchField) UtilGUI.cloneObject(textfieldSearch); }
-    public JdotxtImageButton getButtonSort()       { return (JdotxtImageButton) UtilGUI.cloneObject(buttonSort); }
+    public JdotxtImageButton getButtonSave()      { return buttonSave; }
+    public JdotxtImageButton getButtonReload()   { return buttonReload; }
+    public JdotxtImageButton getButtonArchive()   { return buttonArchive; }
+    public JdotxtImageButton getButtonSettings()  { return buttonSettings; }
+    public SearchField       getTextfieldSearch() { return  textfieldSearch; }
+    public JdotxtImageButton getButtonSort()       { return buttonSort; }
     public JdotxtToggleImageButton getToggleHide() {
-        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleHide);
+        return toggleHide;
     }
 
     public JdotxtToggleImageButton getToggleFuture() {
-        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleFuture);
+        return toggleFuture;
     }
 
     public JdotxtToggleImageButton getTogglePrepend() {
-        return (JdotxtToggleImageButton) UtilGUI.cloneObject(togglePrepend);
+        return togglePrepend;
     }
 
     public JdotxtToggleImageButton getToggleCopy() {
-        return (JdotxtToggleImageButton) UtilGUI.cloneObject(toggleCopy);
+        return toggleCopy;
     }
 
     public JdotxtCombobox getFileLocationCombobox() {
-        return (JdotxtCombobox) UtilGUI.cloneObject(fileLocationCombobox);
+        return fileLocationCombobox;
     }
 
     // Enable/disable all controls
@@ -175,7 +175,7 @@ public class JdotxtToolbar extends Box{
     }
 
     public JdotxtCombobox getSavedSortCombobox() {
-        return (JdotxtCombobox) UtilGUI.cloneObject(savedSortCombobox);
+        return savedSortCombobox;
     }
 
     // The search box
