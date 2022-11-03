@@ -1,0 +1,2734 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE RootStep>
+<RootStep id="_0" name="root"
+          signature="5FFFD1DD8695A92CEB3937FAAFB73B748A87F5A9"
+          version="6.0.3">
+  <include>qfs.qft</include>
+  <TestSet id="_2O" name="use-case-3">
+    <SetupSequence id="_2P" name="Launch jdotxt-0.4">
+      <SetGlobalStep id="_2Q" varname="client">
+        <default>jdotxt-0.4</default>
+      </SetGlobalStep>
+      <ClientWaiter client="$(client)" id="_2R" local="true" raise="false"
+                    resvarname="isSUTRunning" timeout="1">
+        <comment>This node checks whether the SUT is already running. The result of this check will be stored in the variable isSUTRunning. The variable itself can contain true if SUT is already running or false if SUT is not running. This variable will be used in the following 'If' node.</comment>
+      </ClientWaiter>
+      <IfSequence id="_2S" name="Launch SUT if not running"
+                  test="not $(isSUTRunning)">
+        <JavaClientStarter client="$(client)" executable="${qftest:java}"
+                           id="_2T">
+          <parameter>-jar</parameter>
+          <parameter>/home/breno/Documents/FEUP/TVVS/jdotxt/target/jdotxt-0.4.9-SNAPSHOT-jar-with-dependencies.jar</parameter>
+        </JavaClientStarter>
+        <ClientWaiter client="$(client)" id="_2U"/>
+      </IfSequence>
+    </SetupSequence>
+    <TestCase id="_4I" name="desc-to-desc">
+      <BasicSequence id="_88" name="setup-task-priorities">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text3" event="MOUSE_MPRC"
+                        id="_89" modifiers="16" x="73" y="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_DBLCLK"
+                        id="_8A" modifiers="16" x="65" y="14"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_8B" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_8C" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_8D" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_8E">
+          <text>Task 1</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text5" event="MOUSE_MPRC"
+                        id="_8F" modifiers="16" x="16" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text5"
+                       id="_8G">
+          <text>C</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text5"
+                      event="KEY_PTR" id="_8H" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_8I">
+          <text>Task 2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text6" event="MOUSE_MPRC"
+                        id="_8J" modifiers="16" x="13" y="10"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text6"
+                       id="_8K">
+          <text>B</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text6"
+                      event="KEY_PTR" id="_8L" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text8" event="MOUSE_MPRC"
+                        id="_8M" modifiers="16" x="83" y="3"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text8"
+                       id="_8N">
+          <text>Tas</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text7" event="MOUSE_DBLCLK"
+                        id="_8O" modifiers="16" x="56" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8P" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8Q" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8R" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8S" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8T" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8U" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8V" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8W" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8X" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8Y" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8Z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8a" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8b" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8c" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8d" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8e" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8f" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8g" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8h" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8i" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8j" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8k" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_8l" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_8m">
+          <text>Task 3</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text9" event="MOUSE_DBLCLK"
+                        id="_8n" modifiers="16" x="18" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_8o" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PRESSED" id="_8p" keychar="65535"
+                      keycode="16" modifiers="1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text9"
+                       id="_8q">
+          <text>D</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_RELEASED" id="_8r" keychar="65535"
+                      keycode="16" modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_8s" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_8t" modifiers="16" x="134" y="4"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8u" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8v" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8w" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8x" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8y" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_8z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_8+">
+          <text>Task 4</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text11" event="MOUSE_DBLCLK"
+                        id="_8-" modifiers="16" x="9" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text11"
+                       id="_90">
+          <text>A</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text11"
+                      event="KEY_PTR" id="_91" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_A1" name="sort-descending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_A2"
+                        modifiers="16" x="9" y="12"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_A3"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableAvailable_fields&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_A4" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;2&amp;1"
+                        event="MOUSE_MPRC" id="_A5" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_A6" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_A7" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.comAvailable_fields"
+                        event="MOUSE_MPRC" id="_A8" modifiers="16" x="174"
+                        y="40"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_A9" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_AA" name="sort-descending-2">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_AB"
+                        modifiers="16" x="30" y="15"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_AC"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_AD" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_AE" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_AF" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_AG" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_AH" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text13"
+                         id="_AI">
+          <text>(D)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text14"
+                         id="_AJ">
+          <text>(C)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text15"
+                         id="_AK">
+          <text>(B)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text16"
+                         id="_AL">
+          <text>(A)</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_9s" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_9t"
+                        modifiers="16" x="36" y="21"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_9u"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;4&amp;0"
+                        event="MOUSE_MPRC" id="_9v" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_9w" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9x" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_9y" modifiers="16" x="6"
+                        y="23"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_9z" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_9+" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_9-" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_A0"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4G" name="asc-to-desc">
+      <BasicSequence id="_7E" name="setup-task-priorities">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text3" event="MOUSE_MPRC"
+                        id="_7F" modifiers="16" x="73" y="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_DBLCLK"
+                        id="_7G" modifiers="16" x="65" y="14"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_7H" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_7I" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_7J" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_7K">
+          <text>Task 1</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text5" event="MOUSE_MPRC"
+                        id="_7L" modifiers="16" x="16" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text5"
+                       id="_7M">
+          <text>C</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text5"
+                      event="KEY_PTR" id="_7N" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_7O">
+          <text>Task 2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text6" event="MOUSE_MPRC"
+                        id="_7P" modifiers="16" x="13" y="10"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text6"
+                       id="_7Q">
+          <text>B</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text6"
+                      event="KEY_PTR" id="_7R" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text8" event="MOUSE_MPRC"
+                        id="_7S" modifiers="16" x="83" y="3"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text8"
+                       id="_7T">
+          <text>Tas</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text7" event="MOUSE_DBLCLK"
+                        id="_7U" modifiers="16" x="56" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7V" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7W" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7X" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7Y" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7Z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7a" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7b" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7c" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7d" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7e" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7f" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7g" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7h" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7i" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7j" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7k" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7l" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7m" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7n" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7o" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7p" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7q" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_7r" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_7s">
+          <text>Task 3</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text9" event="MOUSE_DBLCLK"
+                        id="_7t" modifiers="16" x="18" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_7u" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PRESSED" id="_7v" keychar="65535"
+                      keycode="16" modifiers="1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text9"
+                       id="_7w">
+          <text>D</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_RELEASED" id="_7x" keychar="65535"
+                      keycode="16" modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_7y" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_7z" modifiers="16" x="134" y="4"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_7+" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_7-" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_80" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_81" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_82" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_83" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_84">
+          <text>Task 4</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text11" event="MOUSE_DBLCLK"
+                        id="_85" modifiers="16" x="9" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text11"
+                       id="_86">
+          <text>A</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text11"
+                      event="KEY_PTR" id="_87" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_9W" name="sort-ascending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_9X"
+                        modifiers="16" x="41" y="9"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_9Y"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableAvailable_fields&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_9Z" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;2&amp;1"
+                        event="MOUSE_MPRC" id="_9a" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9b" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_AM" name="sort-descending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_AN"
+                        modifiers="16" x="28" y="13"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_AO"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_AP" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_AQ" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_9n" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text13"
+                         id="_9o">
+          <text>(D)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text14"
+                         id="_9p">
+          <text>(C)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text15"
+                         id="_9q">
+          <text>(B)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text16"
+                         id="_9r">
+          <text>(A)</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_9c" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_9d"
+                        modifiers="16" x="36" y="21"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_9e"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;4&amp;0"
+                        event="MOUSE_MPRC" id="_9f" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_9g" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9h" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_9i" modifiers="16" x="6"
+                        y="23"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_9j" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_9k" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_9l" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_9m"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4F" name="desc-to-asc">
+      <BasicSequence id="_6K" name="setup-task-priorities">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text3" event="MOUSE_MPRC"
+                        id="_6L" modifiers="16" x="73" y="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_DBLCLK"
+                        id="_6M" modifiers="16" x="65" y="14"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_6N" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_6O" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_6P" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_6Q">
+          <text>Task 1</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text5" event="MOUSE_MPRC"
+                        id="_6R" modifiers="16" x="16" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text5"
+                       id="_6S">
+          <text>C</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text5"
+                      event="KEY_PTR" id="_6T" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_6U">
+          <text>Task 2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text6" event="MOUSE_MPRC"
+                        id="_6V" modifiers="16" x="13" y="10"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text6"
+                       id="_6W">
+          <text>B</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text6"
+                      event="KEY_PTR" id="_6X" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text8" event="MOUSE_MPRC"
+                        id="_6Y" modifiers="16" x="83" y="3"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text8"
+                       id="_6Z">
+          <text>Tas</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text7" event="MOUSE_DBLCLK"
+                        id="_6a" modifiers="16" x="56" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6b" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6c" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6d" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6e" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6f" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6g" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6h" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6i" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6j" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6k" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6l" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6m" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6n" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6o" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6p" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6q" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6r" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6s" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6t" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6u" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6v" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6w" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_6x" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_6y">
+          <text>Task 3</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text9" event="MOUSE_DBLCLK"
+                        id="_6z" modifiers="16" x="18" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_6+" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PRESSED" id="_6-" keychar="65535"
+                      keycode="16" modifiers="1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text9"
+                       id="_70">
+          <text>D</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_RELEASED" id="_71" keychar="65535"
+                      keycode="16" modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_72" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_73" modifiers="16" x="134" y="4"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_74" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_75" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_76" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_77" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_78" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_79" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_7A">
+          <text>Task 4</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text11" event="MOUSE_DBLCLK"
+                        id="_7B" modifiers="16" x="9" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text11"
+                       id="_7C">
+          <text>A</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text11"
+                      event="KEY_PTR" id="_7D" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_92" name="sort-descending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_93"
+                        modifiers="16" x="9" y="12"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_94"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableAvailable_fields&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_95" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;2&amp;1"
+                        event="MOUSE_MPRC" id="_96" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_97" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_98" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.comAvailable_fields"
+                        event="MOUSE_MPRC" id="_99" modifiers="16" x="174"
+                        y="40"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9A" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_9B" name="sort-ascending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_9C"
+                        modifiers="16" x="8" y="17"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_9D"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_9E" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9F" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_9G" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text13"
+                         id="_9H">
+          <text>(A)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text14"
+                         id="_9I">
+          <text>(B)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text15"
+                         id="_9J">
+          <text>(C)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text16"
+                         id="_9K">
+          <text>(D)</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_9L" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_9M"
+                        modifiers="16" x="36" y="21"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_9N"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;4&amp;0"
+                        event="MOUSE_MPRC" id="_9O" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_9P" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_9Q" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_9R" modifiers="16" x="6"
+                        y="23"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_9S" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_9T" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_9U" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_9V"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4E" name="sort-ascending">
+      <BasicSequence id="_3J" name="setup-task-priorities">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text3" event="MOUSE_MPRC"
+                        id="_3K" modifiers="16" x="73" y="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_DBLCLK"
+                        id="_3L" modifiers="16" x="65" y="14"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_3M" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_3N" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_3O" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_3P">
+          <text>Task 1</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text5" event="MOUSE_MPRC"
+                        id="_3Q" modifiers="16" x="16" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text5"
+                       id="_3R">
+          <text>C</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text5"
+                      event="KEY_PTR" id="_3S" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_3T">
+          <text>Task 2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text6" event="MOUSE_MPRC"
+                        id="_3U" modifiers="16" x="13" y="10"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text6"
+                       id="_3V">
+          <text>B</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text6"
+                      event="KEY_PTR" id="_3W" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text8" event="MOUSE_MPRC"
+                        id="_3X" modifiers="16" x="83" y="3"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text8"
+                       id="_3Y">
+          <text>Tas</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text7" event="MOUSE_DBLCLK"
+                        id="_3Z" modifiers="16" x="56" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3a" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3b" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3c" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3d" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3e" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3f" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3g" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3h" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3i" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3j" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3k" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3l" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3m" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3n" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3o" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3p" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3q" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3r" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3s" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3t" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3u" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3v" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_3w" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_3x">
+          <text>Task 3</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text9" event="MOUSE_DBLCLK"
+                        id="_3y" modifiers="16" x="18" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_3z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PRESSED" id="_3+" keychar="65535"
+                      keycode="16" modifiers="1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text9"
+                       id="_3-">
+          <text>D</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_RELEASED" id="_40" keychar="65535"
+                      keycode="16" modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_41" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_42" modifiers="16" x="134" y="4"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_43" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_44" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_45" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_46" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_47" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_48" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_49">
+          <text>Task 4</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text11" event="MOUSE_DBLCLK"
+                        id="_4A" modifiers="16" x="9" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text11"
+                       id="_4B">
+          <text>A</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text11"
+                      event="KEY_PTR" id="_4C" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_54" name="sort-ascending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_55"
+                        modifiers="16" x="41" y="9"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_56"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableAvailable_fields&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_57" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;2&amp;1"
+                        event="MOUSE_MPRC" id="_58" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_59" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_64" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text13"
+                         id="_65">
+          <text>(A)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text14"
+                         id="_66">
+          <text>(B)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text15"
+                         id="_67">
+          <text>(C)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text16"
+                         id="_68">
+          <text>(D)</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_69" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_6A"
+                        modifiers="16" x="36" y="21"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_6B"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;4&amp;0"
+                        event="MOUSE_MPRC" id="_6C" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_6D" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_6E" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_6F" modifiers="16" x="6"
+                        y="23"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_6G" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_6H" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_6I" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_6J"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4D" name="sort-descending">
+      <BasicSequence id="_5A" name="setup-task-priorities">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text3" event="MOUSE_MPRC"
+                        id="_5B" modifiers="16" x="73" y="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_DBLCLK"
+                        id="_5C" modifiers="16" x="65" y="14"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_5D" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_5E" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_5F" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_5G">
+          <text>Task 1</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text5" event="MOUSE_MPRC"
+                        id="_5H" modifiers="16" x="16" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text5"
+                       id="_5I">
+          <text>C</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text5"
+                      event="KEY_PTR" id="_5J" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_5K">
+          <text>Task 2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text6" event="MOUSE_MPRC"
+                        id="_5L" modifiers="16" x="13" y="10"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text6"
+                       id="_5M">
+          <text>B</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text6"
+                      event="KEY_PTR" id="_5N" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text8" event="MOUSE_MPRC"
+                        id="_5O" modifiers="16" x="83" y="3"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text8"
+                       id="_5P">
+          <text>Tas</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text7" event="MOUSE_DBLCLK"
+                        id="_5Q" modifiers="16" x="56" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5R" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5S" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5T" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5U" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5V" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5W" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5X" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5Y" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5Z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5a" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5b" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5c" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5d" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5e" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5f" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5g" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5h" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5i" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5j" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5k" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5l" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5m" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_5n" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_5o">
+          <text>Task 3</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text9" event="MOUSE_DBLCLK"
+                        id="_5p" modifiers="16" x="18" y="19"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_5q" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PRESSED" id="_5r" keychar="65535"
+                      keycode="16" modifiers="1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text9"
+                       id="_5s">
+          <text>D</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_RELEASED" id="_5t" keychar="65535"
+                      keycode="16" modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text9"
+                      event="KEY_PTR" id="_5u" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_5v" modifiers="16" x="134" y="4"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5w" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5x" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5y" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5z" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5+" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_5-" keychar="8" keycode="8"
+                      modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_60">
+          <text>Task 4</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text11" event="MOUSE_DBLCLK"
+                        id="_61" modifiers="16" x="9" y="12"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text11"
+                       id="_62">
+          <text>A</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text11"
+                      event="KEY_PTR" id="_63" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_4P" name="sort-descending">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_4Q"
+                        modifiers="16" x="9" y="12"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_4R"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableAvailable_fields&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_4S" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;2&amp;1"
+                        event="MOUSE_MPRC" id="_4T" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;1&amp;0"
+                        event="MOUSE_MPRC" id="_4U" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_4V" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.comAvailable_fields"
+                        event="MOUSE_MPRC" id="_4W" modifiers="16" x="174"
+                        y="40"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_4X" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_4c" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text13"
+                         id="_4d">
+          <text>(D)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text14"
+                         id="_4e">
+          <text>(C)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text15"
+                         id="_4f">
+          <text>(B)</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text16"
+                         id="_4g">
+          <text>(A)</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_4j" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="labelTipSave3" event="MOUSE_MPRC" id="_4k"
+                        modifiers="16" x="36" y="21"/>
+        <ComponentWaiter client="$(client)" component="dialogJdotxt_Sort"
+                         id="_4l"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="dialogJdotxt_Sort.tableCurrent_sort&amp;4&amp;0"
+                        event="MOUSE_MPRC" id="_4m" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonSave"
+                        event="MOUSE_MPRC" id="_4n" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)" component="buttonOK"
+                        event="MOUSE_MPRC" id="_4o" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_4p" modifiers="16" x="6"
+                        y="23"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_4q" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_4r" modifiers="16" x="13"
+                        y="19"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_4s" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_4t"/>
+      </CleanupSequence>
+    </TestCase>
+  </TestSet>
+  <TestSet id="_2N" name="use-case-2">
+    <SetupSequence id="_2V" name="Launch jdotxt-0.4">
+      <SetGlobalStep id="_2W" varname="client">
+        <default>jdotxt-0.4</default>
+      </SetGlobalStep>
+      <ClientWaiter client="$(client)" id="_2X" local="true" raise="false"
+                    resvarname="isSUTRunning" timeout="1">
+        <comment>This node checks whether the SUT is already running. The result of this check will be stored in the variable isSUTRunning. The variable itself can contain true if SUT is already running or false if SUT is not running. This variable will be used in the following 'If' node.</comment>
+      </ClientWaiter>
+      <IfSequence id="_2Y" name="Launch SUT if not running"
+                  test="not $(isSUTRunning)">
+        <JavaClientStarter client="$(client)" executable="${qftest:java}"
+                           id="_2Z">
+          <parameter>-jar</parameter>
+          <parameter>/home/breno/Documents/FEUP/TVVS/jdotxt/target/jdotxt-0.4.9-SNAPSHOT-jar-with-dependencies.jar</parameter>
+        </JavaClientStarter>
+        <ClientWaiter client="$(client)" id="_2a"/>
+      </IfSequence>
+    </SetupSequence>
+    <TestCase id="_4L" name="tasks-with-project-and-context">
+      <BasicSequence id="_Ce" name="create-tasks">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_Cf" modifiers="16" x="52" y="13"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_Cg">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog" id="_Ch"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Ci">
+          <text>project1 Task @</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog2" id="_Cj"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Ck">
+          <text>context1 1.1</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_Cl" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text2" event="MOUSE_MPRC"
+                        id="_Cm" modifiers="16" x="262" y="21"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PRESSED" id="_Cn" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_Co" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_RELEASED" id="_Cp" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_Cq">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_Cr"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text2"
+                       id="_Cs">
+          <text>project1 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_Ct" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PRESSED" id="_Cu" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_Cv" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_RELEASED" id="_Cw" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_Cx">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_Cy"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text7"
+                       id="_Cz">
+          <text>project2 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_C+" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_MPRC"
+                        id="_C-" modifiers="16" x="178" y="4"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_DBLCLK"
+                        id="_D0" modifiers="16" x="178" y="4"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text17"
+                       id="_D1">
+          <text>2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_D2" modifiers="16" x="182" y="5"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PRESSED" id="_D3" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_D4" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_RELEASED" id="_D5" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_D6">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog4" id="_D7"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_D8">
+          <text>project3 task3</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_D9" keychar="65535" keycode="37"
+                      modifiers="0"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_DA">
+          <text> </text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_DB" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PRESSED" id="_DC" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_DD" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_RELEASED" id="_DE" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text12" id="_DF">
+          <text>Task 0</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_DG" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_DJ" name="select-context-and-project">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.listOpen:_5___Total:_5@+project1"
+                        event="MOUSE_MPRC" id="_DK" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.list3@\@context1"
+                        event="MOUSE_MPRC" id="_DL" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_DM" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text"
+                         id="_DN">
+          <text>+project1 Task @context1 1.1</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_DQ" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.listOpen:_1___Total:_1@All Projects"
+                        event="MOUSE_MPRC" id="_DR" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.list2@All Contexts"
+                        event="MOUSE_MPRC" id="_DS" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete6"
+                        event="MOUSE_MPRC" id="_DT" modifiers="16" x="11"
+                        y="18"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_DU" modifiers="16" x="5"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_DV" modifiers="16" x="7"
+                        y="18"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_DW" modifiers="16" x="15"
+                        y="22"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_DX" modifiers="16" x="15" y="5"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_DY"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4K" name="tasks-with-project">
+      <BasicSequence id="_Bb" name="create-tasks">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_Bc" modifiers="16" x="52" y="13"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_Bd">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog" id="_Be"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Bf">
+          <text>project1 Task @</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog2" id="_Bg"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Bh">
+          <text>context1 1.1</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_Bi" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text2" event="MOUSE_MPRC"
+                        id="_Bj" modifiers="16" x="262" y="21"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PRESSED" id="_Bk" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_Bl" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_RELEASED" id="_Bm" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_Bn">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_Bo"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text2"
+                       id="_Bp">
+          <text>project1 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_Bq" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PRESSED" id="_Br" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_Bs" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_RELEASED" id="_Bt" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_Bu">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_Bv"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text7"
+                       id="_Bw">
+          <text>project2 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_Bx" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_MPRC"
+                        id="_By" modifiers="16" x="178" y="4"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_DBLCLK"
+                        id="_Bz" modifiers="16" x="178" y="4"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text17"
+                       id="_B+">
+          <text>2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_B-" modifiers="16" x="182" y="5"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PRESSED" id="_C0" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_C1" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_RELEASED" id="_C2" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_C3">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog4" id="_C4"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_C5">
+          <text>project3 task3</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_C6" keychar="65535" keycode="37"
+                      modifiers="0"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_C7">
+          <text> </text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_C8" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PRESSED" id="_C9" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_CA" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_RELEASED" id="_CB" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text12" id="_CC">
+          <text>Task 0</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_CD" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_CG" name="select-project">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.listOpen:_5___Total:_5@+project1"
+                        event="MOUSE_MPRC" id="_CH" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_CK" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text19"
+                         id="_CL">
+          <text>+project1 Task @context1 1.1</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.text20"
+                         id="_CM">
+          <text>+project1 Task 1.2</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_CW" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.listOpen:_2___Total:_2@All Projects"
+                        event="MOUSE_MPRC" id="_CX" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete6"
+                        event="MOUSE_MPRC" id="_CY" modifiers="16" x="9"
+                        y="5"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_CZ" modifiers="16" x="9"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_Ca" modifiers="16" x="19"
+                        y="8"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_Cb" modifiers="16" x="15"
+                        y="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_Cc" modifiers="16" x="11" y="15"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_Cd"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_4J" name="tasks-with-context">
+      <BasicSequence id="_AY" name="create-tasks">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_AZ" modifiers="16" x="52" y="13"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_Aa">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog" id="_Ab"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Ac">
+          <text>project1 Task @</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog2" id="_Ad"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text4"
+                       id="_Ae">
+          <text>context1 1.1</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_Af" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text2" event="MOUSE_MPRC"
+                        id="_Ag" modifiers="16" x="262" y="21"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PRESSED" id="_Ah" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_Ai" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_RELEASED" id="_Aj" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text2" id="_Ak">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_Al"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text2"
+                       id="_Am">
+          <text>project1 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text2"
+                      event="KEY_PTR" id="_An" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PRESSED" id="_Ao" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_Ap" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_RELEASED" id="_Aq" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text7" id="_Ar">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog3" id="_As"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text7"
+                       id="_At">
+          <text>project2 Task 1.2</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text7"
+                      event="KEY_PTR" id="_Au" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_MPRC"
+                        id="_Av" modifiers="16" x="178" y="4"/>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text17" event="MOUSE_DBLCLK"
+                        id="_Aw" modifiers="16" x="178" y="4"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text17"
+                       id="_Ax">
+          <text>2</text>
+        </TextInputStep>
+        <MouseEventStep clicks="2" client="$(client)"
+                        component="frameJdotxt.text10" event="MOUSE_DBLCLK"
+                        id="_Ay" modifiers="16" x="182" y="5"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PRESSED" id="_Az" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_A+" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_RELEASED" id="_A-" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text10" id="_B0">
+          <text>+</text>
+        </TextInputStep>
+        <ComponentWaiter client="$(client)" component="dialog4" id="_B1"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_B2">
+          <text>project3 task3</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_B3" keychar="65535" keycode="37"
+                      modifiers="0"/>
+        <TextInputStep client="$(client)" component="frameJdotxt.text10"
+                       id="_B4">
+          <text> </text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text10"
+                      event="KEY_PTR" id="_B5" keychar="10" keycode="10"
+                      modifiers="0"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PRESSED" id="_B6" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_B7" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_RELEASED" id="_B8" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text12" id="_B9">
+          <text>Task 0</text>
+        </TextInputStep>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text12"
+                      event="KEY_PTR" id="_BA" keychar="10" keycode="10"
+                      modifiers="0"/>
+      </BasicSequence>
+      <BasicSequence id="_BD" name="select-context">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.list@\@context1"
+                        event="MOUSE_MPRC" id="_BE" modifiers="16"/>
+      </BasicSequence>
+      <BasicSequence id="_BF" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text"
+                         id="_BG">
+          <text>+project1 Task @context1 1.1</text>
+        </CheckStringStep>
+      </BasicSequence>
+      <CleanupSequence id="_BT" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.list2@All Contexts"
+                        event="MOUSE_MPRC" id="_BU" modifiers="16"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete6"
+                        event="MOUSE_MPRC" id="_BV" modifiers="16" x="18"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete4"
+                        event="MOUSE_MPRC" id="_BW" modifiers="16" x="18"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete5"
+                        event="MOUSE_MPRC" id="_BX" modifiers="16" x="18"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete3"
+                        event="MOUSE_MPRC" id="_BY" modifiers="16" x="18"
+                        y="15"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_BZ" modifiers="16" x="18" y="15"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_Ba"/>
+      </CleanupSequence>
+    </TestCase>
+  </TestSet>
+  <TestSet id="_1" name="use-case-1">
+    <SetupSequence id="_6" name="Launch jdotxt-0.4">
+      <SetGlobalStep id="_7" varname="client">
+        <default>jdotxt-0.4</default>
+      </SetGlobalStep>
+      <ClientWaiter client="$(client)" id="_8" local="true" raise="false"
+                    resvarname="isSUTRunning" timeout="1">
+        <comment>This node checks whether the SUT is already running. The result of this check will be stored in the variable isSUTRunning. The variable itself can contain true if SUT is already running or false if SUT is not running. This variable will be used in the following 'If' node.</comment>
+      </ClientWaiter>
+      <IfSequence id="_9" name="Launch SUT if not running"
+                  test="not $(isSUTRunning)">
+        <JavaClientStarter client="$(client)" executable="${qftest:java}"
+                           id="_A">
+          <parameter>-jar</parameter>
+          <parameter>/home/breno/Documents/FEUP/TVVS/jdotxt/target/jdotxt-0.4.9-SNAPSHOT-jar-with-dependencies.jar</parameter>
+        </JavaClientStarter>
+        <ClientWaiter client="$(client)" id="_B"/>
+      </IfSequence>
+    </SetupSequence>
+    <TestCase id="_2F" name="delete-with-no-tasks">
+      <BasicSequence id="_2H" name="delete">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete2"
+                        event="MOUSE_MPRC" id="_2I" modifiers="16" x="3"
+                        y="17"/>
+      </BasicSequence>
+      <BasicSequence id="_2J" name="assert">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="frameJdotxt.panel2" id="_2K"/>
+      </BasicSequence>
+      <CleanupSequence id="_2L" name="teardown">
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_2M"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_2B" name="create-done-task">
+      <BasicSequence id="_21" name="mark-done-and-create">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_22" modifiers="16" x="119" y="3"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PRESSED" id="_23" keychar="65535"
+                      keycode="17" modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_PTR" id="_24" keychar="1" keycode="65"
+                      modifiers="2"/>
+        <KeyEventStep client="$(client)" component="frameJdotxt.text4"
+                      event="KEY_RELEASED" id="_25" keychar="65535"
+                      keycode="17" modifiers="0"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_26">
+          <text>Test Application</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelUncheck2"
+                        event="MOUSE_MPRC" id="_27" modifiers="16" x="7"
+                        y="9"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelAdd" event="MOUSE_MPRC"
+                        id="_28" modifiers="16" x="10" y="42"/>
+      </BasicSequence>
+      <BasicSequence id="_29" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text"
+                         id="_2A"/>
+      </BasicSequence>
+      <CleanupSequence id="_2C" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_2D" modifiers="16" x="10" y="23"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_2E"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_1v" name="create-and-delete">
+      <BasicSequence id="_1q" name="create-and-delete">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_1r" modifiers="16" x="274" y="23"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_1s">
+          <text>Test delete</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelAdd" event="MOUSE_MPRC"
+                        id="_1t" modifiers="16" x="19" y="21"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_1u" modifiers="16" x="13" y="14"/>
+      </BasicSequence>
+      <BasicSequence id="_1x" name="assert">
+        <CheckBooleanStep checktype="visible" client="$(client)"
+                          component="frameJdotxt.panel2" id="_1y"/>
+      </BasicSequence>
+      <CleanupSequence id="_1z" name="teardown">
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_1+"/>
+      </CleanupSequence>
+    </TestCase>
+    <TestCase id="_1f" name="create-and-done">
+      <BasicSequence id="_1a" name="create-task-and-done">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.text4" event="MOUSE_MPRC"
+                        id="_1b" modifiers="16" x="31" y="22"/>
+        <TextInputStep clear="true" client="$(client)"
+                       component="frameJdotxt.text4" id="_1c">
+          <text>Test Application</text>
+        </TextInputStep>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelAdd" event="MOUSE_MPRC"
+                        id="_1d" modifiers="16" x="35" y="25"/>
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelUncheck"
+                        event="MOUSE_MPRC" id="_1e" modifiers="16" x="12"
+                        y="14"/>
+      </BasicSequence>
+      <BasicSequence id="_1j" name="assert">
+        <CheckStringStep client="$(client)" component="frameJdotxt.text"
+                         id="_1k">
+          <text>Test Application</text>
+        </CheckStringStep>
+        <CheckStringStep client="$(client)" component="frameJdotxt.labelCheck"
+                         id="_1l"/>
+      </BasicSequence>
+      <CleanupSequence id="_1n" name="teardown">
+        <MouseEventStep clicks="1" client="$(client)"
+                        component="frameJdotxt.labelDelete" event="MOUSE_MPRC"
+                        id="_1o" modifiers="16" x="13" y="19"/>
+        <WindowEventStep client="$(client)" component="frameJdotxt"
+                         event="WINDOW_CLOSING" id="_1p"/>
+      </CleanupSequence>
+    </TestCase>
+  </TestSet>
+  <PackageRoot id="_3"/>
+  <ExtraSequence id="_4"/>
+  <WindowList id="_5">
+    <WindowStep class="Window" feature="jdotxt" height="1210" id="frameJdotxt"
+                uid="_C" width="1680" x="1944" y="108">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.JdotxtGUI</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Window</extrafeature>
+      <extrafeature name="qfs:label" negate="false" regexp="false" state="1">jdotxt</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JFrame</extrafeature>
+      <ComponentStep class="Panel" classcount="15" classindex="9"
+                     height="1052" id="frameJdotxt.scroll" uid="_D"
+                     width="1180" x="500" y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="Label" classcount="3" classindex="0" height="48"
+                       id="frameJdotxt.labelAdd" uid="_E" width="48" x="0"
+                       y="2">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1577404465</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">add</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="3" classindex="2"
+                       height="23" id="frameJdotxt.text3" uid="_14"
+                       width="1058" x="82" y="26">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtDateField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="3" classindex="1"
+                       height="24" id="frameJdotxt.text4" uid="_15"
+                       width="1058" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Panel" classcount="5" classindex="1"
+                       id="frameJdotxt.panel2" uid="_1w">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtTaskList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Panel</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JPanel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="3" classindex="1" height="24"
+                       id="frameJdotxt.labelUncheck2" uid="_20" width="24"
+                       x="1294" y="2">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">-871109906</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageCheckBox</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">uncheck</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="3" classindex="2" height="24"
+                       id="frameJdotxt.labelDelete2" uid="_2G" width="24"
+                       x="1294" y="26">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="3" classindex="0"
+                       height="24" id="frameJdotxt.text5" uid="_2b" width="34"
+                       x="48" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="18" classindex="9"
+                     height="1052" id="frameJdotxt.scroll2" uid="_F"
+                     width="1180" x="500" y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="TextField" classcount="6" classindex="4"
+                       height="24" id="frameJdotxt.text" uid="_G" width="1102"
+                       x="38" y="52">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="6" classindex="1"
+                       height="24" id="frameJdotxt.text2" uid="_H"
+                       width="1058" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Panel" classcount="8" classindex="0"
+                       height="1052" id="frameJdotxt.panel" uid="_1U"
+                       width="1164" x="0" y="0">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JViewport</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Panel</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JViewport</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="5" classindex="3" height="24"
+                       id="frameJdotxt.labelUncheck" uid="_1Z" width="24"
+                       x="1294" y="52">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">-871109906</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageCheckBox</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">uncheck</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="5" classindex="3" height="24"
+                       id="frameJdotxt.labelCheck" uid="_1g" width="24"
+                       x="1294" y="52">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">-283907346</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageCheckBox</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">check</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="5" classindex="4" height="24"
+                       id="frameJdotxt.labelDelete" uid="_1m" width="24"
+                       x="1294" y="76">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Panel" classcount="8" classindex="1"
+                       id="frameJdotxt.panel3" uid="_1-">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtTaskList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Panel</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JPanel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="6" classindex="0"
+                       height="24" id="frameJdotxt.text6" uid="_2c" width="34"
+                       x="48" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="javax.swing.Box" classcount="3" classindex="0"
+                     height="48" id="frameJdotxt.com" uid="_I" width="1680"
+                     x="0" y="86">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">com.chschmid.jdotxt.gui.controls.JdotxtToolbar</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.Box</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Label" classcount="18" classindex="0"
+                     feature="ToolTip: Save" height="42" id="labelTipSave"
+                     uid="_16" width="42" x="0" y="89">
+        <extrafeature name="imagehash" negate="false" regexp="false"
+                      state="1">2127658297</extrafeature>
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Label</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">save</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JLabel</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="21" classindex="9" height="901"
+                     id="frameJdotxt.scroll3" uid="_2d" width="1334" x="500"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="TextField" classcount="9" classindex="1"
+                       height="24" id="frameJdotxt.text7" uid="_2e"
+                       width="1212" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Panel" classcount="11" classindex="0"
+                       height="901" id="frameJdotxt.panel4" uid="_2l"
+                       width="1318" x="0" y="0">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JViewport</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Panel</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JViewport</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="7" classindex="4" height="24"
+                       id="frameJdotxt.labelDelete3" uid="_2m" width="24"
+                       x="1294" y="76">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="9" classindex="2"
+                       height="23" id="frameJdotxt.text8" uid="_3C"
+                       width="1212" x="82" y="26">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtDateField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="9" classindex="0"
+                       height="24" id="frameJdotxt.text9" uid="_3D" width="34"
+                       x="48" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="9" classindex="4"
+                       height="24" id="frameJdotxt.text19" uid="_CI"
+                       width="1256" x="38" y="52">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="9" classindex="7"
+                       height="24" id="frameJdotxt.text20" uid="_CJ"
+                       width="1256" x="38" y="101">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Label" classcount="20" classindex="9"
+                     feature="ToolTip: Save" height="48" id="labelTipSave2"
+                     uid="_2f" width="48" x="1448" y="86">
+        <extrafeature name="imagehash" negate="false" regexp="false"
+                      state="1">-1737379839</extrafeature>
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Label</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">sort</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JLabel</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="ComboBox" classcount="2" classindex="1"
+                     height="41" id="frameJdotxt.combo" uid="_2k" width="152"
+                     x="1296" y="90">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">com.chschmid.jdotxt.gui.controls.JdotxtCombobox</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">ComboBox</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JComboBox</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="24" classindex="9" height="901"
+                     id="frameJdotxt.scroll4" uid="_3E" width="1334" x="500"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="TextField" classcount="12" classindex="1"
+                       height="24" id="frameJdotxt.text10" uid="_3F"
+                       width="1212" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="12" classindex="0"
+                       height="24" id="frameJdotxt.text11" uid="_3G"
+                       width="34" x="48" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="9" classindex="4" height="24"
+                       id="frameJdotxt.labelDelete5" uid="_4i" width="24"
+                       x="1294" y="76">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="12" classindex="4"
+                       height="24" id="frameJdotxt.text17" uid="_AU"
+                       width="1256" x="38" y="52">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="27" classindex="9" height="901"
+                     id="frameJdotxt.scroll5" uid="_3H" width="1334" x="500"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="TextField" classcount="15" classindex="1"
+                       height="24" id="frameJdotxt.text12" uid="_3I"
+                       width="1212" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="15" classindex="3"
+                       height="24" id="frameJdotxt.text13" uid="_4Y"
+                       width="34" x="4" y="52">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="15" classindex="6"
+                       height="24" id="frameJdotxt.text14" uid="_4Z"
+                       width="34" x="4" y="101">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="15" classindex="9"
+                       height="24" id="frameJdotxt.text15" uid="_4a"
+                       width="34" x="4" y="150">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="TextField" classcount="15" classindex="12"
+                       height="24" id="frameJdotxt.text16" uid="_4b"
+                       width="34" x="4" y="199">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtPriorityField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="11" classindex="4"
+                       height="24" id="frameJdotxt.labelDelete4" uid="_4h"
+                       width="24" x="1294" y="76">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Label" classcount="24" classindex="9"
+                     feature="ToolTip: Save" height="48" id="labelTipSave3"
+                     uid="_4M" width="48" x="1448" y="86">
+        <extrafeature name="imagehash" negate="false" regexp="false"
+                      state="1">-1737379839</extrafeature>
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Label</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">sort</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JLabel</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="30" classindex="9" height="901"
+                     id="frameJdotxt.scroll6" uid="_AW" width="1334" x="500"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="TextField" classcount="18" classindex="1"
+                       height="24" id="frameJdotxt.text18" uid="_AX"
+                       width="1212" x="82" y="2">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">TextField</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JTextField</extrafeature>
+        </ComponentStep>
+        <ComponentStep class="Label" classcount="13" classindex="4"
+                       height="24" id="frameJdotxt.labelDelete6" uid="_BJ"
+                       width="24" x="1294" y="76">
+          <extrafeature name="imagehash" negate="false" regexp="false"
+                        state="1">1746989883</extrafeature>
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">com.chschmid.jdotxt.gui.controls.JdotxtImageButton</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">Label</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">delete</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JLabel</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="30" classindex="7" height="901"
+                     id="frameJdotxt.scroll7" uid="_BB" width="250" x="250"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.list" uid="_BC">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="18" classindex="7" height="901"
+                     id="frameJdotxt.scroll8" uid="_BH" width="250" x="250"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.list2" uid="_BI">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="30" classindex="5" height="901"
+                     id="frameJdotxt.scroll9" uid="_CE" width="250" x="0"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.listOpen:_5___Total:_5" uid="_CF">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">Open: 5   Total: 5</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="21" classindex="5" height="901"
+                     id="frameJdotxt.scroll10" uid="_CN" width="250" x="0"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.listOpen:_2___Total:_2" uid="_CO">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">Open: 2   Total: 2</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="21" classindex="7" height="901"
+                     id="frameJdotxt.scroll11" uid="_DH" width="250" x="250"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.list3" uid="_DI">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+      <ComponentStep class="Panel" classcount="18" classindex="5" height="901"
+                     id="frameJdotxt.scroll12" uid="_DO" width="250" x="0"
+                     y="134">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Panel</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JScrollPane</extrafeature>
+        <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Panel:ScrollPanel</extrafeature>
+        <ComponentStep class="List" classcount="1" classindex="0"
+                       id="frameJdotxt.listOpen:_1___Total:_1" uid="_DP">
+          <extrafeature name="qfs:class" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+          <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                        state="0">List</extrafeature>
+          <extrafeature name="qfs:label" negate="false" regexp="false"
+                        state="1">Open: 1   Total: 1</extrafeature>
+          <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                        state="0">javax.swing.JList</extrafeature>
+        </ComponentStep>
+      </ComponentStep>
+    </WindowStep>
+    <WindowStep class="Dialog" feature="jdotxt Sort" height="475"
+                id="dialogJdotxt_Sort" modal="true" uid="_2g" width="300"
+                x="1920" y="1068">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.controls.JdotxtSortDialog</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Dialog</extrafeature>
+      <extrafeature name="qfs:label" negate="false" regexp="false" state="1">jdotxt Sort</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JDialog</extrafeature>
+      <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Window:Dialog</extrafeature>
+      <ComponentStep class="Table" classcount="2" classindex="0"
+                     id="dialogJdotxt_Sort.tableCurrent_sort" uid="_2h" x="15"
+                     y="136">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JTable</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Table</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">Current sort</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JTable</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Button" classcount="3" classindex="0"
+                     feature="Save" height="53" id="buttonSave" uid="_2i"
+                     width="89" x="196" y="363">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JButton</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Button</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">Save</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JButton</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Button" classcount="3" classindex="1" feature="OK"
+                     height="34" id="buttonOK" uid="_2j" width="72" x="151"
+                     y="436">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JButton</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Button</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">OK</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JButton</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="Table" classcount="2" classindex="1"
+                     id="dialogJdotxt_Sort.tableAvailable_fields" uid="_4N"
+                     x="15" y="204">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.JTable</extrafeature>
+        <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                      state="0">Table</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">Available fields</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.JTable</extrafeature>
+      </ComponentStep>
+      <ComponentStep class="javax.swing.Box" classcount="3" classindex="2"
+                     height="44" id="dialogJdotxt_Sort.comAvailable_fields"
+                     uid="_4O" width="300" x="0" y="431">
+        <extrafeature name="qfs:class" negate="false" regexp="false"
+                      state="0">javax.swing.Box</extrafeature>
+        <extrafeature name="qfs:label" negate="false" regexp="false"
+                      state="1">Available fields</extrafeature>
+        <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                      state="0">javax.swing.Box</extrafeature>
+      </ComponentStep>
+    </WindowStep>
+    <WindowStep class="Dialog" height="1" id="dialog" uid="_AR" width="1"
+                x="1683" y="606">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField$$AutocompletionList</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Dialog</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JDialog</extrafeature>
+      <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Window:Dialog</extrafeature>
+    </WindowStep>
+    <WindowStep class="Dialog" height="1" id="dialog2" uid="_AS" width="1"
+                x="1782" y="606">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField$$AutocompletionList</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Dialog</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JDialog</extrafeature>
+      <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Window:Dialog</extrafeature>
+    </WindowStep>
+    <WindowStep class="Dialog" height="43" id="dialog3" uid="_AT" width="133"
+                x="1683" y="606">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField$$AutocompletionList</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Dialog</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JDialog</extrafeature>
+      <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Window:Dialog</extrafeature>
+    </WindowStep>
+    <WindowStep class="Dialog" height="84" id="dialog4" uid="_AV" width="133"
+                x="1683" y="606">
+      <extrafeature name="qfs:class" negate="false" regexp="false" state="0">com.chschmid.jdotxt.gui.controls.JdotxtContentField$$AutocompletionList</extrafeature>
+      <extrafeature name="qfs:genericclass" negate="false" regexp="false"
+                    state="0">Dialog</extrafeature>
+      <extrafeature name="qfs:systemclass" negate="false" regexp="false"
+                    state="0">javax.swing.JDialog</extrafeature>
+      <extrafeature name="qfs:type" negate="false" regexp="false" state="0">Window:Dialog</extrafeature>
+    </WindowStep>
+  </WindowList>
+</RootStep>
