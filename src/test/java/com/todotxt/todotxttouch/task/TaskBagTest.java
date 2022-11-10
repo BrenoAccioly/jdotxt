@@ -90,18 +90,20 @@ public class TaskBagTest {
 
             Comparator<Task> comparator = null;
 
-            ArrayList<Task> tasks = new ArrayList<>();
+            assertEquals(Arrays.asList(), taskBag.getTasks(filter, comparator));
 
-            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            taskBag.addAsTask("Task 0 t:2022-11-10");
+            taskBag.addAsTask("Task 1 t:2022-11-10");
+            taskBag.addAsTask("Task 2 t:2022-11-10");
 
-            taskBag.addAsTask("Task 0");
-            taskBag.addAsTask("Task 1");
-            taskBag.addAsTask("Task 2");
-            tasks.add(new Task(0, "Task 0"));
-            tasks.add(new Task(1, "Task 1"));
-            tasks.add(new Task(2, "Task 2"));
-
-            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(
+                    Arrays.asList(
+                            new Task(0, "2022-11-10 Task 0 t:2022-11-10"),
+                            new Task(1, "2022-11-10 Task 1 t:2022-11-10"),
+                            new Task(2, "2022-11-10 Task 2 t:2022-11-10")
+                    ),
+                    taskBag.getTasks(filter, comparator)
+            );
         }
     }
 

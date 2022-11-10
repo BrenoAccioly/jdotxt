@@ -135,18 +135,20 @@ public class JdotxtTaskBagTest {
 
             Comparator<Task> comparator = null;
 
-            ArrayList<Task> tasks = new ArrayList<>();
+            assertEquals(Arrays.asList(), taskBag.getTasks(filter, comparator));
 
-            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            taskBag.addAsTask("Task 0 t:2022-11-10");
+            taskBag.addAsTask("Task 1 t:2022-11-10");
+            taskBag.addAsTask("Task 2 t:2022-11-10");
 
-            taskBag.addAsTask("Task 0");
-            taskBag.addAsTask("Task 1");
-            taskBag.addAsTask("Task 2");
-            tasks.add(new Task(0, "Task 0"));
-            tasks.add(new Task(1, "Task 1"));
-            tasks.add(new Task(2, "Task 2"));
-
-            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(
+                    Arrays.asList(
+                            new Task(0, "2022-11-10 Task 0 t:2022-11-10"),
+                            new Task(1, "2022-11-10 Task 1 t:2022-11-10"),
+                            new Task(2, "2022-11-10 Task 2 t:2022-11-10")
+                    ),
+                    taskBag.getTasks(filter, comparator)
+            );
         }
     }
 
@@ -190,40 +192,28 @@ public class JdotxtTaskBagTest {
     public void testContexts() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
             classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
-            List<String> contexts = new ArrayList<>();
-            assertEquals(taskBag.getContexts(false), contexts);
-            contexts.add("-");
-            assertEquals(taskBag.getContexts(true), contexts);
+            assertEquals(Arrays.asList(), taskBag.getContexts(false));
 
             taskBag.addAsTask("Task 0");
             taskBag.addAsTask("Task 1 @a");
             taskBag.addAsTask("Task 2 @b");
 
-            contexts.add("a");
-            contexts.add("b");
-
-            assertEquals(Arrays.asList("-", "a", "b"), contexts);
+            assertEquals(Arrays.asList("-", "a", "b"), taskBag.getContexts(true));
         }
-
     }
 
     @Test
     public void testProjects() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
             classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
-            List<String> projects = new ArrayList<>();
-            assertEquals(taskBag.getProjects(false), projects);
-            projects.add("-");
-            assertEquals(taskBag.getContexts(true), projects);
+            assertEquals(Arrays.asList(), taskBag.getProjects(false));
+            assertEquals(Arrays.asList("-"), taskBag.getProjects(true));
 
             taskBag.addAsTask("Task 0");
             taskBag.addAsTask("Task 1 +a");
             taskBag.addAsTask("Task 2 +b");
 
-            projects.add("a");
-            projects.add("b");
-
-            assertEquals(Arrays.asList("-", "a", "b"), projects);
+            assertEquals(Arrays.asList("-", "a", "b"), taskBag.getProjects(true));
         }
     }
 }

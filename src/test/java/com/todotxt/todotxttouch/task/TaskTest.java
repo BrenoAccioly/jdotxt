@@ -2,16 +2,16 @@ package com.todotxt.todotxttouch.task;
 
 import static org.mockito.Mockito.*;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
+//@RunWith(Parameterized.class)
 public class TaskTest {
 
     @Test
@@ -156,7 +156,12 @@ public class TaskTest {
         assertFalse(task.isCompleted());
         assertEquals(task.getCompletionDate(), "");
     }
-
+/*
+    @Parameterized.Parameters
+    public static Collection input() {
+        return Arrays.asList();
+    }
+*/
     @Test
     public void testEquality() {
         Task task1 = new Task(0, "x (A) Task 1 +project @context");
