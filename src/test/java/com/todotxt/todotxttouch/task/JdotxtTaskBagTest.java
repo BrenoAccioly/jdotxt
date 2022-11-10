@@ -23,43 +23,10 @@ public class JdotxtTaskBagTest {
         taskBag = new JdotxtTaskBagImpl(repository);
     }
 
-    //Task task;
-
-    //@Spy private Task taskSpy = Mockito.spy(task);
-
-    /*
-    *       Project spy = Mockito.spy(project);
-      Mockito.doReturn(10).when(spy).getElapsedSeconds();
-      *
-      *    Field reader = JTimeSchedApp.class.getDeclaredField("LOGGER");
-    reader.setAccessible(true);
-    JTimeSchedApp mainClass = new JTimeSchedApp();
-    Logger l = Logger.getLogger("JTimeSched");
-    l.setLevel(Level.ALL);
-    reader.set(mainClass, l);
-      *
-      * public static LanguagesController lang;
-    * */
     @Test
     public void testArchive() {
-        /*
-        try {
-            Field lang =  JdotxtGUI.class.getDeclaredField("lang");
-            LanguagesController languagesController = new LanguagesController("English");
-            lang.setAccessible(true);
-            JdotxtGUI jdotxtGUI = new JdotxtGUI();
-            lang.set(jdotxtGUI, languagesController);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-        */
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            //Date any = new Date();
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
-
-            //assertEquals(null, RelativeDate.getRelativeDate(any(Date.class)));
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
 
             taskBag.archive();
             assertEquals(taskBag.size(), 0);
@@ -74,21 +41,27 @@ public class JdotxtTaskBagTest {
     @Test
     public void testUnarchive() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             Task task = new Task(0, "(A) Task 1 +project @context");
             taskBag.unarchive(task);
-            assertEquals(taskBag.size(), 1);
+            assertEquals(taskBag.size(), 2);
 
             taskBag.addAsTask("(A) Task 1 +project @context");
             taskBag.unarchive(task);
-            assertEquals(taskBag.size(), 1);
+            assertEquals(taskBag.size(), 2);
+
+            task = new Task(3, "(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+
+            task = new Task(-1, "(A) Task 1 +project @context");
+            taskBag.unarchive(task);
         }
     }
 
     @Test
     public void testClear() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             taskBag.clear();
             assertEquals(taskBag.size(), 0);
             assertFalse(taskBag.hasChanged());
@@ -110,7 +83,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testUpdateKnownTask() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             Task task0 = new Task(0, "Task 0");
             taskBag.addAsTask("Task 0");
             taskBag.update(task0);
@@ -121,7 +94,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testFilterTasks() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             List<Priority> priorities = new ArrayList<>();
             List<String> contexts = new ArrayList<>();
             List<String> projects = new ArrayList<>();
@@ -155,7 +128,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testDelete() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             Task task = new Task(0, "Task 0");
             taskBag.addAsTask("Task 0");
             assertEquals(taskBag.size(), 1);
@@ -170,7 +143,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testPriorities() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             List<Priority> priorities = new ArrayList<>();
             assertEquals(priorities, taskBag.getPriorities());
 
@@ -191,7 +164,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testContexts() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             assertEquals(Arrays.asList(), taskBag.getContexts(false));
 
             taskBag.addAsTask("Task 0");
@@ -205,7 +178,7 @@ public class JdotxtTaskBagTest {
     @Test
     public void testProjects() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             assertEquals(Arrays.asList(), taskBag.getProjects(false));
             assertEquals(Arrays.asList("-"), taskBag.getProjects(true));
 

@@ -25,12 +25,38 @@ public class TaskTest {
         @Test
         public void testTaskCreation() {
             Task task1 = new Task();
-            Task task2 = new Task(1, "Task 3");
+            Task task2 = new Task(1, "Task 3 due:2022-11-23");
             Task task3 = new Task(task2);
             assertEquals(task1.getId(), 0);
             assertEquals(task1.getOriginalText(), "");
             assertFalse(task1.isCompleted());
             assertEquals(task2, task3);
+
+            assertFalse(task1.isHidden());
+            assertEquals("", task1.getPrependedDate());
+            assertFalse(task1.isRec());
+            assertEquals(0, task1.getDuration());
+            assertEquals("", task1.getRelativeAge());
+            assertFalse(task1.isFromThreshold());
+            assertEquals(0, task1.getAmount());
+            assertEquals(new Date(122, Calendar.NOVEMBER, 23), task2.getDueDate());
+            assertEquals(Arrays.asList(), task1.getPhoneNumbers());
+        }
+
+        @Test
+        public void testScreenFormat() {
+            Task task1 = new Task(0, "x Task 1");
+            assertEquals("x  Task 1", task1.inScreenFormat());
+            Task task2 = new Task(0, "Task 2");
+            assertEquals("Task 2", task2.inScreenFormat());
+        }
+
+        @Test
+        public void testInFileFormatHeaderNoDate() {
+            Task task1 = new Task(0, "x Task 1");
+            assertEquals("x  ", task1.inFileFormatHeaderNoDate());
+            Task task2 = new Task(0, "Task 2");
+            assertEquals("", task2.inFileFormatHeaderNoDate());
         }
 
         @Test

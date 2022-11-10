@@ -23,36 +23,48 @@ public class TaskBagTest {
 
     @Test
     public void testArchive() {
-        taskBag.archive();
-        assertEquals(taskBag.size(), 0);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
+            taskBag.archive();
+            assertEquals(taskBag.size(), 0);
 
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.archive();
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.archive();
 
-        assertEquals(taskBag.size(), 1);
+            assertEquals(taskBag.size(), 1);
+        }
     }
 
     @Test
     public void testUnarchive() {
-        Task task = new Task(0, "(A) Task 1 +project @context");
-        taskBag.unarchive(task);
-        assertEquals(taskBag.size(), 1);
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.unarchive(task);
-        assertEquals(taskBag.size(), 1);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
+            Task task = new Task(0, "(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+            assertEquals(taskBag.size(), 2);
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+            assertEquals(taskBag.size(), 2);
+
+            task = new Task(-1, "(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+        }
     }
 
     @Test
     public void testClear() {
-        taskBag.clear();
-        assertEquals(taskBag.size(), 0);
-        assertFalse(taskBag.hasChanged());
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
+            taskBag.clear();
+            assertEquals(taskBag.size(), 0);
+            assertFalse(taskBag.hasChanged());
 
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.clear();
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.clear();
 
-        assertEquals(taskBag.size(), 0);
-        assertFalse(taskBag.hasChanged());
+            assertEquals(taskBag.size(), 0);
+            assertFalse(taskBag.hasChanged());
+        }
     }
 
     @Test(expected = TaskPersistException.class)
@@ -64,7 +76,7 @@ public class TaskBagTest {
     @Test
     public void testUpdateKnownTask() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
 
             Task task0 = new Task(0, "Task 0");
             taskBag.addAsTask("Task 0");
@@ -76,7 +88,7 @@ public class TaskBagTest {
     @Test
     public void testFilterTasks() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             List<Priority> priorities = new ArrayList<>();
             List<String> contexts = new ArrayList<>();
             List<String> projects = new ArrayList<>();
@@ -110,8 +122,9 @@ public class TaskBagTest {
     @Test
     public void testDelete() {
         try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
-            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             Task task = new Task(0, "Task 0");
+            taskBag.addAsTask("Task 0");
             taskBag.delete(task);
             assertEquals(taskBag.size(), 0);
             taskBag.addAsTask("Task 0");
