@@ -1,5 +1,6 @@
 package com.todotxt.todotxttouch.util;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,6 +10,11 @@ import static org.junit.Assert.*;
 public class TreeTest {
 
     Tree<String> tree = new Tree<>("a");
+
+    @Before
+    public void restart(){
+        tree = new Tree<>("a");
+    }
 
     @Test
     public void testAddChild() {
@@ -30,5 +36,11 @@ public class TreeTest {
         tree.addChild("c");
         assertEquals(tree.getChild(0).getData(), "b");
         assertEquals(tree.getChild(1).getData(), "c");
+    }
+
+    @Test
+    public void testAddChildToUnitializedTree() {
+        Tree<String> toAdd = new Tree<>("b");
+        tree.addChild(toAdd);
     }
 }
