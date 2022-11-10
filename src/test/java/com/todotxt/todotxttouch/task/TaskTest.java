@@ -1,6 +1,6 @@
 package com.todotxt.todotxttouch.task;
 
-
+import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
@@ -81,8 +81,8 @@ public class TaskTest {
         Task taskB = new Task(1, "Task B @c2 @c3");
         Task taskC = new Task(2, "Task C");
 
-        assertEquals(taskA.getContexts(), Arrays.asList("p1"));
-        assertEquals(taskB.getContexts(), Arrays.asList("p2", "p3"));
+        assertEquals(taskA.getContexts(), Arrays.asList("c1"));
+        assertEquals(taskB.getContexts(), Arrays.asList("c2", "c3"));
         assertEquals(taskC.getContexts(), Arrays.asList());
     }
 

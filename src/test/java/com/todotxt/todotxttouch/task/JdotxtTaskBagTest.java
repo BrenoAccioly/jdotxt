@@ -1,15 +1,18 @@
 package com.todotxt.todotxttouch.task;
 
-import com.chschmid.jdotxt.Jdotxt;
+import com.todotxt.todotxttouch.util.RelativeDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 public class JdotxtTaskBagTest {
     JdotxtTaskBagImpl taskBag;
@@ -20,38 +23,82 @@ public class JdotxtTaskBagTest {
         taskBag = new JdotxtTaskBagImpl(repository);
     }
 
+    //Task task;
+
+    //@Spy private Task taskSpy = Mockito.spy(task);
+
+    /*
+    *       Project spy = Mockito.spy(project);
+      Mockito.doReturn(10).when(spy).getElapsedSeconds();
+      *
+      *    Field reader = JTimeSchedApp.class.getDeclaredField("LOGGER");
+    reader.setAccessible(true);
+    JTimeSchedApp mainClass = new JTimeSchedApp();
+    Logger l = Logger.getLogger("JTimeSched");
+    l.setLevel(Level.ALL);
+    reader.set(mainClass, l);
+      *
+      * public static LanguagesController lang;
+    * */
     @Test
     public void testArchive() {
-        taskBag.archive();
-        assertEquals(taskBag.size(), 0);
+        /*
+        try {
+            Field lang =  JdotxtGUI.class.getDeclaredField("lang");
+            LanguagesController languagesController = new LanguagesController("English");
+            lang.setAccessible(true);
+            JdotxtGUI jdotxtGUI = new JdotxtGUI();
+            lang.set(jdotxtGUI, languagesController);
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        */
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            //Date any = new Date();
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
 
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.archive();
+            //assertEquals(null, RelativeDate.getRelativeDate(any(Date.class)));
 
-        assertEquals(taskBag.size(), 1);
+            taskBag.archive();
+            assertEquals(taskBag.size(), 0);
+
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.archive();
+
+            assertEquals(taskBag.size(), 1);
+        }
     }
 
     @Test
     public void testUnarchive() {
-        Task task = new Task(0, "(A) Task 1 +project @context");
-        taskBag.unarchive(task);
-        assertEquals(taskBag.size(), 1);
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.unarchive(task);
-        assertEquals(taskBag.size(), 1);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            Task task = new Task(0, "(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+            assertEquals(taskBag.size(), 1);
+
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.unarchive(task);
+            assertEquals(taskBag.size(), 1);
+        }
     }
 
     @Test
     public void testClear() {
-        taskBag.clear();
-        assertEquals(taskBag.size(), 0);
-        assertFalse(taskBag.hasChanged());
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            taskBag.clear();
+            assertEquals(taskBag.size(), 0);
+            assertFalse(taskBag.hasChanged());
 
-        taskBag.addAsTask("(A) Task 1 +project @context");
-        taskBag.clear();
+            taskBag.addAsTask("(A) Task 1 +project @context");
+            taskBag.clear();
 
-        assertEquals(taskBag.size(), 0);
-        assertFalse(taskBag.hasChanged());
+            assertEquals(taskBag.size(), 0);
+            assertFalse(taskBag.hasChanged());
+        }
     }
 
     @Test(expected = TaskPersistException.class)
@@ -62,99 +109,121 @@ public class JdotxtTaskBagTest {
 
     @Test
     public void testUpdateKnownTask() {
-        Task task0 = new Task(0, "Task 0");
-        taskBag.addAsTask("Task 0");
-        taskBag.update(task0);
-        assertTrue(taskBag.hasChanged());
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            Task task0 = new Task(0, "Task 0");
+            taskBag.addAsTask("Task 0");
+            taskBag.update(task0);
+            assertTrue(taskBag.hasChanged());
+        }
     }
 
     @Test
     public void testFilterTasks() {
-        List<Priority> priorities = new ArrayList<>();
-        List<String> contexts = new ArrayList<>();
-        List<String> projects = new ArrayList<>();
-        String text = "";
-        boolean caseSensitive = false;
-        boolean showHidden = true;
-        boolean showThreshold = false;
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            List<Priority> priorities = new ArrayList<>();
+            List<String> contexts = new ArrayList<>();
+            List<String> projects = new ArrayList<>();
+            String text = "";
+            boolean caseSensitive = false;
+            boolean showHidden = true;
+            boolean showThreshold = false;
 
-        Filter<Task> filter = FilterFactory.generateAndFilter(
-                priorities, contexts, projects, text, caseSensitive, showHidden, showThreshold);
+            Filter<Task> filter = FilterFactory.generateAndFilter(
+                    priorities, contexts, projects, text, caseSensitive, showHidden, showThreshold);
 
-        Comparator<Task> comparator = null;
+            Comparator<Task> comparator = null;
 
-        ArrayList<Task> tasks = new ArrayList<>();
+            ArrayList<Task> tasks = new ArrayList<>();
 
-        assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(taskBag.getTasks(filter, comparator), tasks);
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1");
-        taskBag.addAsTask("Task 2");
-        tasks.add(new Task(0, "Task 0"));
-        tasks.add(new Task(1, "Task 1"));
-        tasks.add(new Task(2, "Task 2"));
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1");
+            taskBag.addAsTask("Task 2");
+            tasks.add(new Task(0, "Task 0"));
+            tasks.add(new Task(1, "Task 1"));
+            tasks.add(new Task(2, "Task 2"));
 
-        assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+        }
     }
 
     @Test
     public void testDelete() {
-        Task task = new Task(0, "Task 0");
-        taskBag.delete(task);
-        assertEquals(taskBag.size(), 0);
-        taskBag.addAsTask("Task 0");
-        taskBag.delete(task);
-        assertEquals(taskBag.size(), 0);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            Task task = new Task(0, "Task 0");
+            taskBag.addAsTask("Task 0");
+            assertEquals(taskBag.size(), 1);
+            taskBag.delete(task);
+            assertEquals(taskBag.size(), 0);
+            taskBag.addAsTask("Task 0");
+            taskBag.delete(task);
+            assertEquals(taskBag.size(), 0);
+        }
     }
 
     @Test
     public void testPriorities() {
-        List<Priority> priorities = new ArrayList<>();
-        assertEquals(taskBag.getPriorities(), priorities);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            List<Priority> priorities = new ArrayList<>();
+            assertEquals(priorities, taskBag.getPriorities());
 
-        taskBag.addAsTask("(A) Task 0");
-        taskBag.addAsTask("(B) Task 1");
-        taskBag.addAsTask("(C) Task 2");
+            taskBag.addAsTask("(A) Task 0");
+            taskBag.addAsTask("(B) Task 1");
+            taskBag.addAsTask("(C) Task 2");
+            taskBag.addAsTask("Task 3");
 
-        priorities.add(Priority.A);
-        priorities.add(Priority.B);
-        priorities.add(Priority.C);
-
-        assertEquals(taskBag.getPriorities(), priorities);
+            assertEquals(Arrays.asList(
+                    Priority.A,
+                    Priority.B,
+                    Priority.C,
+                    Priority.NONE
+            ), taskBag.getPriorities());
+        }
     }
 
     @Test
     public void testContexts() {
-        List<String> contexts = new ArrayList<>();
-        assertEquals(taskBag.getContexts(false), contexts);
-        contexts.add("-");
-        assertEquals(taskBag.getContexts(true), contexts);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            List<String> contexts = new ArrayList<>();
+            assertEquals(taskBag.getContexts(false), contexts);
+            contexts.add("-");
+            assertEquals(taskBag.getContexts(true), contexts);
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1 @a");
-        taskBag.addAsTask("Task 2 @b");
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1 @a");
+            taskBag.addAsTask("Task 2 @b");
 
-        contexts.add("a");
-        contexts.add("b");
+            contexts.add("a");
+            contexts.add("b");
 
-        assertEquals(taskBag.getPriorities(), contexts);
+            assertEquals(Arrays.asList("-", "a", "b"), contexts);
+        }
+
     }
 
     @Test
     public void testProjects() {
-        List<String> projects = new ArrayList<>();
-        assertEquals(taskBag.getProjects(false), projects);
-        projects.add("-");
-        assertEquals(taskBag.getContexts(true), projects);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            List<String> projects = new ArrayList<>();
+            assertEquals(taskBag.getProjects(false), projects);
+            projects.add("-");
+            assertEquals(taskBag.getContexts(true), projects);
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1 +a");
-        taskBag.addAsTask("Task 2 +b");
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1 +a");
+            taskBag.addAsTask("Task 2 +b");
 
-        projects.add("a");
-        projects.add("b");
+            projects.add("a");
+            projects.add("b");
 
-        assertEquals(taskBag.getPriorities(), projects);
+            assertEquals(Arrays.asList("-", "a", "b"), projects);
+        }
     }
-
 }

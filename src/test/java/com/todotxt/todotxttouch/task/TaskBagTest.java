@@ -1,14 +1,15 @@
 package com.todotxt.todotxttouch.task;
 
+import com.todotxt.todotxttouch.util.RelativeDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.MockedStatic;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
 
 public class TaskBagTest {
 
@@ -62,100 +63,104 @@ public class TaskBagTest {
 
     @Test
     public void testUpdateKnownTask() {
-        Task task0 = new Task(0, "Task 0");
-        taskBag.addAsTask("Task 0");
-        taskBag.update(task0);
-        assertTrue(taskBag.hasChanged());
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+
+            Task task0 = new Task(0, "Task 0");
+            taskBag.addAsTask("Task 0");
+            taskBag.update(task0);
+            assertTrue(taskBag.hasChanged());
+        }
     }
 
     @Test
     public void testFilterTasks() {
-        List<Priority> priorities = new ArrayList<>();
-        List<String> contexts = new ArrayList<>();
-        List<String> projects = new ArrayList<>();
-        String text = "";
-        boolean caseSensitive = false;
-        boolean showHidden = true;
-        boolean showThreshold = false;
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            List<Priority> priorities = new ArrayList<>();
+            List<String> contexts = new ArrayList<>();
+            List<String> projects = new ArrayList<>();
+            String text = "";
+            boolean caseSensitive = false;
+            boolean showHidden = true;
+            boolean showThreshold = false;
 
-        Filter<Task> filter = FilterFactory.generateAndFilter(
-                priorities, contexts, projects, text, caseSensitive, showHidden, showThreshold);
+            Filter<Task> filter = FilterFactory.generateAndFilter(
+                    priorities, contexts, projects, text, caseSensitive, showHidden, showThreshold);
 
-        Comparator<Task> comparator = null;
+            Comparator<Task> comparator = null;
 
-        ArrayList<Task> tasks = new ArrayList<>();
+            ArrayList<Task> tasks = new ArrayList<>();
 
-        assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(taskBag.getTasks(filter, comparator), tasks);
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1");
-        taskBag.addAsTask("Task 2");
-        tasks.add(new Task(0, "Task 0"));
-        tasks.add(new Task(1, "Task 1"));
-        tasks.add(new Task(2, "Task 2"));
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1");
+            taskBag.addAsTask("Task 2");
+            tasks.add(new Task(0, "Task 0"));
+            tasks.add(new Task(1, "Task 1"));
+            tasks.add(new Task(2, "Task 2"));
 
-        assertEquals(taskBag.getTasks(filter, comparator), tasks);
+            assertEquals(taskBag.getTasks(filter, comparator), tasks);
+        }
     }
-
 
     @Test
     public void testDelete() {
-        Task task = new Task(0, "Task 0");
-        taskBag.delete(task);
-        assertEquals(taskBag.size(), 0);
-        taskBag.addAsTask("Task 0");
-        taskBag.delete(task);
-        assertEquals(taskBag.size(), 0);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            Task task = new Task(0, "Task 0");
+            taskBag.delete(task);
+            assertEquals(taskBag.size(), 0);
+            taskBag.addAsTask("Task 0");
+            taskBag.delete(task);
+            assertEquals(taskBag.size(), 0);
+        }
     }
 
     @Test
     public void testPriorities() {
-        List<Priority> priorities = new ArrayList<>();
-        assertEquals(taskBag.getPriorities(), priorities);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            assertEquals(Arrays.asList(), taskBag.getPriorities());
 
-        taskBag.addAsTask("(A) Task 0");
-        taskBag.addAsTask("(B) Task 1");
-        taskBag.addAsTask("(C) Task 2");
+            taskBag.addAsTask("(A) Task 0");
+            taskBag.addAsTask("(B) Task 1");
+            taskBag.addAsTask("(C) Task 2");
 
-        priorities.add(Priority.A);
-        priorities.add(Priority.B);
-        priorities.add(Priority.C);
-
-        assertEquals(taskBag.getPriorities(), priorities);
+            assertEquals(
+                    Arrays.asList(Priority.A, Priority.B, Priority.C),
+                    taskBag.getPriorities()
+            );
+        }
     }
 
     @Test
     public void testContexts() {
-        List<String> contexts = new ArrayList<>();
-        assertEquals(taskBag.getContexts(false), contexts);
-        contexts.add("-");
-        assertEquals(taskBag.getContexts(true), contexts);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            assertEquals(Arrays.asList(), taskBag.getContexts(false));
+            assertEquals(Arrays.asList("-"), taskBag.getContexts(true));
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1 @a");
-        taskBag.addAsTask("Task 2 @b");
-
-        contexts.add("a");
-        contexts.add("b");
-
-        assertEquals(taskBag.getPriorities(), contexts);
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1 @a");
+            taskBag.addAsTask("Task 2 @b");
+            assertEquals(Arrays.asList("-", "a", "b"), taskBag.getContexts(true));
+        }
     }
 
     @Test
     public void testProjects() {
-        List<String> projects = new ArrayList<>();
-        assertEquals(taskBag.getProjects(false), projects);
-        projects.add("-");
-        assertEquals(taskBag.getContexts(true), projects);
+        try (MockedStatic<RelativeDate> classMock = mockStatic(RelativeDate.class)) {
+            classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("bar");
+            assertEquals(Arrays.asList(), taskBag.getProjects(false));
+            assertEquals(Arrays.asList("-"), taskBag.getContexts(true));
 
-        taskBag.addAsTask("Task 0");
-        taskBag.addAsTask("Task 1 +a");
-        taskBag.addAsTask("Task 2 +b");
+            taskBag.addAsTask("Task 0");
+            taskBag.addAsTask("Task 1 +a");
+            taskBag.addAsTask("Task 2 +b");
 
-        projects.add("a");
-        projects.add("b");
-
-        assertEquals(taskBag.getPriorities(), projects);
+            assertEquals(Arrays.asList("-", "a", "b"), taskBag.getProjects(true));
+        }
     }
-
 }
