@@ -9,8 +9,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Suite;
 
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Instant;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -189,6 +191,304 @@ public class TaskTest {
 
             assertFalse(task.isCompleted());
             assertEquals(task.getCompletionDate(), "");
+        }
+
+        @Test
+        public void testEqualsNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("completionDate");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("completionDate");
+            f2.setAccessible(true);
+            f2.set(t2, "a");
+            assertNotEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+
+
+        }
+
+        @Test
+        public void testEqualsBothNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("completionDate");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("completionDate");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsContextNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("contexts");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("contexts");
+            f2.setAccessible(true);
+            f2.set(t2, new ArrayList<String>());
+            assertNotEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+
+        }
+
+        @Test
+        public void testEqualsBothURLNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("links");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("links");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsURLNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("links");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("links");
+            f2.setAccessible(true);
+            f2.set(t2, new ArrayList<URL>());
+            assertNotEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothContextNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("contexts");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("contexts");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothMailNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("mailAddresses");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("mailAddresses");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsMailNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("mailAddresses");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("mailAddresses");
+            f2.setAccessible(true);
+            f2.set(t2, new ArrayList<String>());
+            assertNotEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothPhoneNumberNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("phoneNumbers");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("phoneNumbers");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsPhoneNumberNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("phoneNumbers");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("phoneNumbers");
+            f2.setAccessible(true);
+            f2.set(t2, new ArrayList<String>());
+            assertEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothPrependedDateNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("prependedDate");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("prependedDate");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsPrependedDateNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("prependedDate");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("prependedDate");
+            f2.setAccessible(true);
+            f2.set(t2, "");
+            assertNotEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothProjectsNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("projects");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("projects");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsProjectsNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("projects");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("projects");
+            f2.setAccessible(true);
+            f2.set(t2, new ArrayList<String>());
+            assertNotEquals(t1, t2);
+            assertNotEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothAgeNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("relativeAge");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("relativeAge");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsAgeNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("relativeAge");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("relativeAge");
+            f2.setAccessible(true);
+            f2.set(t2, "");
+            assertNotEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsBothTextNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("text");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("text");
+            f2.setAccessible(true);
+            f2.set(t2, null);
+            assertEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsTextNull() throws NoSuchFieldException, IllegalAccessException {
+            Task t1 = new Task();
+            Task t2 = new Task();
+
+            Field f1 = t1.getClass().getDeclaredField("text");
+            f1.setAccessible(true);
+            f1.set(t1, null);
+
+            Field f2 = t2.getClass().getDeclaredField("text");
+            f2.setAccessible(true);
+            f2.set(t2, "");
+            assertNotEquals(t1, t2);
+            assertEquals(t1.hashCode(), t2.hashCode());
+        }
+
+        @Test
+        public void testEqualsDifferentClass() {
+            Task t1 = new Task();
+            Object t2 = 1;
+            assertFalse(t1.equals(t2));
         }
     }
 
