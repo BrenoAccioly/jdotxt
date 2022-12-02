@@ -410,6 +410,7 @@ public class Util {
     }
 
     public static int[] integerList2IntArray(List<Integer> integerlist) {
+        if (integerlist == null) return null;
         int[] array = new int[integerlist.size()];
         for (int k1 = 0; k1 < integerlist.size(); k1++) {
             array[k1] = (int) integerlist.get(k1);

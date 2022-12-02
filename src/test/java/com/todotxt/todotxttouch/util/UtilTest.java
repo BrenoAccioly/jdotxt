@@ -24,7 +24,7 @@ public class UtilTest {
         int[] array =  Util.integerList2IntArray(list);
 
         // When
-        assertEquals(array.length, 0);
+        assertEquals(null, array);
     }
 
     @Test

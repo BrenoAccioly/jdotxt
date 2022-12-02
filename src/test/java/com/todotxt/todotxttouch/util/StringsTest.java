@@ -61,7 +61,7 @@ public class StringsTest {
 
             // Then
             assertEquals("", result1);
-            assertEquals(" 1 ", result2);
+            assertEquals("1", result2);
         }
 
         @Test
@@ -120,7 +120,7 @@ public class StringsTest {
             String resultUpperBound = Strings.insertPaddedIfNeeded(s, insertAtUpperBound, toInsert);
 
             // Then
-            assertEquals(" 3 124", resultLowerBound);
+            assertEquals("3 124", resultLowerBound);
             assertEquals("124 3 ", resultUpperBound);
         }
 
@@ -222,7 +222,7 @@ public class StringsTest {
 
             // Then
             assertEquals("", result1);
-            assertEquals(" 1 ", result2);
+            assertEquals("1", result2);
         }
 
         @Test
@@ -281,7 +281,7 @@ public class StringsTest {
             String resultUpperBound = Strings.insertPadded(s, insertAtUpperBound, toInsert);
 
             // Then
-            assertEquals(" 3 124", resultLowerBound);
+            assertEquals("3 124", resultLowerBound);
             assertEquals("124 3 ", resultUpperBound);
         }
 

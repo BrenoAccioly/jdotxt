@@ -162,6 +162,6 @@ public class SorterTest {
         t1.markComplete(Date.from(Instant.now()));
         Task t2 = new Task(1,"Test task!");
         t2.markComplete(Date.from(Instant.now()));
-        assertEquals(gs.compare(t1,t2),-1);
+        assertEquals(0,gs.compare(t1,t2));
     }
 }

@@ -44,6 +44,10 @@ public final class Strings {
      */
     public static String insertPadded(String s, int insertAt,
             String stringToInsert) {
+
+        if (Strings.isEmptyOrNull(s))
+            return stringToInsert;
+
         if (Strings.isEmptyOrNull(stringToInsert)) {
             return s;
         }
@@ -95,6 +99,9 @@ public final class Strings {
      */
     public static String insertPaddedIfNeeded(String s, int insertAt,
             String stringToInsert) {
+
+        if (Strings.isEmptyOrNull(s)) return stringToInsert;
+
         if (Strings.isEmptyOrNull(stringToInsert)) {
             return s;
         }

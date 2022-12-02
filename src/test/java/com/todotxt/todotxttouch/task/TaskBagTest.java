@@ -41,10 +41,10 @@ public class TaskBagTest {
             classMock.when(() -> RelativeDate.getRelativeDate(any(Date.class))).thenReturn("");
             Task task = new Task(0, "(A) Task 1 +project @context");
             taskBag.unarchive(task);
-            assertEquals(taskBag.size(), 2);
+            assertEquals(1, taskBag.size());
             taskBag.addAsTask("(A) Task 1 +project @context");
             taskBag.unarchive(task);
-            assertEquals(taskBag.size(), 2);
+            assertEquals(1, taskBag.size());
 
             task = new Task(-1, "(A) Task 1 +project @context");
             taskBag.unarchive(task);
@@ -104,9 +104,9 @@ public class TaskBagTest {
 
             assertEquals(Arrays.asList(), taskBag.getTasks(filter, comparator));
 
-            taskBag.addAsTask("Task 0 t:2022-11-10");
-            taskBag.addAsTask("Task 1 t:2022-11-10");
-            taskBag.addAsTask("Task 2 t:2022-11-10");
+            taskBag.addAsTask("2022-11-10 Task 0 t:2022-11-10");
+            taskBag.addAsTask("2022-11-10 Task 1 t:2022-11-10");
+            taskBag.addAsTask("2022-11-10 Task 2 t:2022-11-10");
 
             assertEquals(
                     Arrays.asList(

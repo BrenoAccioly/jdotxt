@@ -77,7 +77,8 @@ public class TaskIo {
     public static ArrayList<Task> loadTasksFromFile(File file) throws IOException {
         ArrayList<Task> items = new ArrayList<Task>();
         BufferedReader in = null;
-        if (!file.exists()) {
+        if (file == null) System.out.println("File is null...");
+        else if (!file.exists()) {
             System.out.printf(file.getAbsolutePath() + " does not exist!");
         } else {
             encoding = detectEncoding(file);
