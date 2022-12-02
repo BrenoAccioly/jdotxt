@@ -88,4 +88,28 @@ public class ContextParserTest {
         actual.addAll(ContextParser.getInstance().parse(task));
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void contextInText() {
+        task = "Task 1 @context1";
+        expected.add("context1");
+        actual.addAll(ContextParser.getInstance().parse(task));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void multipleContextsInText() {
+        task = "Task 1 @context1 @context2";
+        expected.addAll(Arrays.asList("context1", "context2"));
+        actual.addAll(ContextParser.getInstance().parse(task));
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void noContextInText() {
+        task = "Task 1";
+        actual.addAll(ContextParser.getInstance().parse(task));
+        assertEquals(expected, actual);
+    }
+
 }

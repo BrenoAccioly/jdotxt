@@ -62,6 +62,33 @@ public class TaskTest {
         }
 
         @Test
+        public void inFileFormatHeaderNoDateTaskCompleted() {
+            Task task = new Task(0, "x Task 0");
+            assertEquals("x  ", task.inFileFormatHeaderNoDate());
+        }
+
+        @Test
+        public void inFileFormatHeaderNoDateTaskWithPriority() {
+            Task task = new Task(0, "(A) Task 0");
+            assertEquals("(A) ", task.inFileFormatHeaderNoDate());
+        }
+
+        @Test
+        public void inFileFormatHeaderNoDateTaskWithoutCompletionAndPriority() {
+            Task task = new Task(0, "Task 0");
+            assertEquals("", task.inFileFormatHeaderNoDate());
+        }
+
+        @Test
+        public void inFileFormatHeaderNoDateTaskCompletedAndWithPriority() {
+            Task task = new Task(0, "x (A) Task 0");
+            assertEquals("x  ", task.inFileFormatHeaderNoDate());
+
+            task = new Task(0, "(A) x Task 0");
+            assertEquals("(A) ", task.inFileFormatHeaderNoDate());
+        }
+
+        @Test
         public void testTaskCreationWithFilters() {
             Task task1 = new Task();
             ArrayList<Priority> priorities = new ArrayList<>();
