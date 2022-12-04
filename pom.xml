@@ -212,11 +212,11 @@
                 <configuration>
                     <excludedClasses>
                         <!-- copyFileTest(com.todotxt.todotxttouch.util.UtilTest) -->
-                        <param>com.chschmid.jdotxt*</param>
+                        <param>com.chschmid.jdotxt.*</param>
                     </excludedClasses>
                     <excludedTestClasses>
                         <!-- copyFileTest(com.todotxt.todotxttouch.util.UtilTest) -->
-                        <param>com.chschmid.jdotxt*</param>
+                        <param>com.chschmid.jdotxt.*</param>
                     </excludedTestClasses>
                 </configuration>
             </plugin>
