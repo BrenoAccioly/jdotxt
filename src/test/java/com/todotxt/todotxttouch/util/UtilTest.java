@@ -1,7 +1,9 @@
 package com.todotxt.todotxttouch.util;
 
 import com.todotxt.todotxttouch.TodoException;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import javax.swing.*;
 
@@ -13,6 +15,19 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class UtilTest {
+
+    @Before
+    public void prepare() {
+        File orig= new File("./orig");
+        File unknown = new File("./unknown");
+        File newFile = new File("./new");
+        if (orig.exists())
+            orig.delete();
+        if (unknown.exists())
+            unknown.delete();
+        if (newFile.delete())
+            newFile.delete();
+    }
 
     // Throws unexpected exception
     @Test
@@ -116,6 +131,8 @@ public class UtilTest {
         File unknown = new File("./unknown");
         File newFile = new File("./new");
         Util.copyFile(unknown, newFile, false);
+        unknown.delete();
+        newFile.delete();
     }
 
     @Test
@@ -163,6 +180,7 @@ public class UtilTest {
         File unknown = new File("./unknown");
         File newFile = new File("./new");
         Util.renameFile(unknown, newFile, false);
+        newFile.delete();
     }
 
     @Test
