@@ -17,6 +17,23 @@ public class TreeTest {
     }
 
     @Test
+    public void testTreeFromParent() {
+        Tree<String> child = new Tree(tree, "b");
+        assertEquals("a", child.getParent().getData());
+        assertEquals("b", child.getData());
+    }
+
+    @Test
+    public void testContains() {
+        Tree<String> child = new Tree(tree, "b");
+        tree.addChild(child);
+
+        assertTrue(tree.contains(child));
+        assertFalse(child.contains(tree));
+
+    }
+
+    @Test
     public void testAddChild() {
         assertFalse(tree.isLoaded());
         tree.setLoaded();
@@ -24,7 +41,8 @@ public class TreeTest {
 
         Tree<String> toAdd = new Tree<>("b");
 
-        tree.addChild(toAdd);
+        Tree<String> child = tree.addChild(toAdd);
+        assertEquals("b", child.getData());
 
         assertTrue(tree.contains(toAdd));
         assertEquals(toAdd.getParent().getData(), "a");

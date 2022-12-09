@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -18,6 +19,12 @@ public class ByContextFilterTest {
         byContextFilter = new ByContextFilter(contexts);
         Task task = new Task();
         assertTrue(byContextFilter.apply(task));
+
+        byContextFilter = new ByContextFilter(Arrays.asList("-"));
+        assertTrue(byContextFilter.apply(task));
+        task = new Task(0, "Task @c1");
+        assertFalse(byContextFilter.apply(task));
+
     }
 
     @Test
@@ -33,6 +40,9 @@ public class ByContextFilterTest {
         assertTrue(byContextFilter.apply(task1));
 
         Task task2 = new Task(0, "Task @c3");
+        assertFalse(byContextFilter.apply(task2));
+
+        byContextFilter = new ByContextFilter(Arrays.asList("-"));
         assertFalse(byContextFilter.apply(task2));
     }
 
