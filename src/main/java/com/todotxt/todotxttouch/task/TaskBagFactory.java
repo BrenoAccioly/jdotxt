@@ -29,10 +29,10 @@ package com.todotxt.todotxttouch.task;
  * @author Tim Barlotta
  */
 public class TaskBagFactory {
-	public static TaskBag getTaskBag() {
+    public static TaskBag getTaskBag() {
 
-		LocalFileTaskRepository localFileTaskRepository = new LocalFileTaskRepository();
+        LocalFileTaskRepository localFileTaskRepository = new LocalFileTaskRepository();
 
-		return new JdotxtTaskBagImpl(localFileTaskRepository);
-	}
+        return new JdotxtTaskBagImpl(localFileTaskRepository);
+    }
 }

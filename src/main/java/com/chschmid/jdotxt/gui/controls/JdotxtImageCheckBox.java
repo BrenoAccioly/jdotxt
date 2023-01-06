@@ -25,33 +25,33 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class JdotxtImageCheckBox extends JdotxtImageButton {
-	private ImageIcon unselected;
-	private ImageIcon selected;
-		
-	private boolean isSelected;
-		
-	public JdotxtImageCheckBox(ImageIcon unselected, ImageIcon selected) {
-		super(unselected);
-		isSelected = false;
+    private ImageIcon unselected;
+    private ImageIcon selected;
+        
+    private boolean isSelected;
+        
+    public JdotxtImageCheckBox(ImageIcon unselected, ImageIcon selected) {
+        super(unselected);
+        isSelected = false;
 
-		this.unselected = unselected;
-		this.selected = selected;
-	}
-		
-	public boolean isSelected() { return isSelected; }
-	public void setSelected(boolean isSelected) {
-		if (isSelected) setIcon(selected);
-		else setIcon(unselected);
-		
-		if (this.isSelected == isSelected) return;
-		else {
-			this.isSelected = isSelected;
-			ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Toggle");
-			super.fireActionPerformed(event);
-		}
-	}
-	
-	protected void fireActionPerformed(ActionEvent event) {
-		setSelected(!isSelected);
+        this.unselected = unselected;
+        this.selected = selected;
+    }
+        
+    public boolean isSelected() { return isSelected; }
+    public void setSelected(boolean isSelected) {
+        if (isSelected) setIcon(selected);
+        else setIcon(unselected);
+        
+        if (this.isSelected == isSelected) return;
+        else {
+            this.isSelected = isSelected;
+            ActionEvent event = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "Toggle");
+            super.fireActionPerformed(event);
+        }
+    }
+    
+    protected void fireActionPerformed(ActionEvent event) {
+        setSelected(!isSelected);
     }
 }

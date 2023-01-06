@@ -32,251 +32,251 @@ import java.util.*;
  * @author Tim Barlotta
  */
 class JdotxtTaskBagImpl implements TaskBag {
-	private final LocalTaskRepository localRepository;
-	private ArrayList<Task> tasks = new ArrayList<Task>();
-	private Date lastReload = null;
-	private Date lastWrite  = null;
-	private Date lastChange = null;
+    private final LocalTaskRepository localRepository;
+    private ArrayList<Task> tasks = new ArrayList<Task>();
+    private Date lastReload = null;
+    private Date lastWrite  = null;
+    private Date lastChange = null;
 
-	public JdotxtTaskBagImpl(LocalTaskRepository localRepository) {
-		this.localRepository = localRepository;
-	}
+    public JdotxtTaskBagImpl(LocalTaskRepository localRepository) {
+        this.localRepository = localRepository;
+    }
 
-	public void store(ArrayList<Task> tasks) {
-		if (lastChange != null && (lastWrite == null || lastChange.after(lastWrite))) localRepository.store(tasks);
-		
-		lastWrite = new Date();
-		lastReload = null;
-		lastChange = null;
-	}
+    public void store(ArrayList<Task> tasks) {
+        if (lastChange != null && (lastWrite == null || lastChange.after(lastWrite))) localRepository.store(tasks);
+        
+        lastWrite = new Date();
+        lastReload = null;
+        lastChange = null;
+    }
 
-	public void store() {
-		store(this.tasks);
-	}
+    public void store() {
+        store(this.tasks);
+    }
 
-	@Override
-	public void archive() {
-		try {
-			localRepository.archive(tasks);
-			lastReload = null;
-			lastWrite = new Date();
-		} catch (Exception e) {
-			throw new TaskPersistException("An error occurred while archiving",
-					e);
-		}
-	}
+    @Override
+    public void archive() {
+        try {
+            localRepository.archive(tasks);
+            lastReload = null;
+            lastWrite = new Date();
+        } catch (Exception e) {
+            throw new TaskPersistException("An error occurred while archiving",
+                    e);
+        }
+    }
 
-	@Override
-	public void unarchive(Task task) {
-		try {
-			reload();
-			int index = (int)task.getId();
-			if (index >= tasks.size()) {
-				index = tasks.size() - 1;
-			}
-			if (index < 0) {
-				index = 0;
-			}
-			tasks.add(index, task);
-			store();
-			removeArchivedTask(task);
-		} catch (Exception e) {
-			throw new TaskPersistException("An error occurred while adding {"
-					+ task + "}", e);
-		}
-	}
-	
-	private void removeArchivedTask(Task task) {
-		ArrayList<Task> doneTasks = localRepository.loadDoneTasks();
-		Task found = find(doneTasks, task);
-		if (found != null) {
-			doneTasks.remove(found);
-			localRepository.storeDoneTasks(doneTasks);
-		}
-	}
-	
-	@Override
-	public void reload() {
-		if (lastReload == null || localRepository.todoFileModifiedSince(lastReload)) {
-			localRepository.init();
-			this.tasks = localRepository.load();
-			lastReload = new Date();
-			lastWrite  = new Date();
-			lastChange = null;
-		}
-	}
+    @Override
+    public void unarchive(Task task) {
+        try {
+            reload();
+            int index = (int)task.getId();
+            if (index >= tasks.size()) {
+                index = tasks.size() - 1;
+            }
+            if (index < 0) {
+                index = 0;
+            }
+            tasks.add(index, task);
+            store();
+            removeArchivedTask(task);
+        } catch (Exception e) {
+            throw new TaskPersistException("An error occurred while adding {"
+                    + task + "}", e);
+        }
+    }
 
-	@Override
-	public void clear() {
-		this.tasks = new ArrayList<Task>();
-		localRepository.purge();
-		lastReload = null;
-		lastWrite  = null;
-		lastChange = null;
-	}
+    private void removeArchivedTask(Task task) {
+        ArrayList<Task> doneTasks = localRepository.loadDoneTasks();
+        Task found = find(doneTasks, task);
+        if (found != null) {
+            doneTasks.remove(found);
+            localRepository.storeDoneTasks(doneTasks);
+        }
+    }
 
-	@Override
-	public int size() {
-		return tasks.size();
-	}
+    @Override
+    public void reload() {
+        if (lastReload == null || localRepository.todoFileModifiedSince(lastReload)) {
+            localRepository.init();
+            this.tasks = localRepository.load();
+            lastReload = new Date();
+            lastWrite  = new Date();
+            lastChange = null;
+        }
+    }
 
-	@Override
-	public List<Task> getTasks() {
-		return getTasks(null, null);
-	}
+    @Override
+    public void clear() {
+        this.tasks = new ArrayList<Task>();
+        localRepository.purge();
+        lastReload = null;
+        lastWrite  = null;
+        lastChange = null;
+    }
 
-	@Override
-	public List<Task> getTasks(Filter<Task> filter, Comparator<Task> comparator) {
-		ArrayList<Task> localTasks = new ArrayList<Task>();
-		if (filter != null) {
-			for (Task t : tasks) {
-				if (filter.apply(t)) {
-					localTasks.add(t);
-				}
-			}
-		} else {
-			localTasks.addAll(tasks);
-		}
+    @Override
+    public int size() {
+        return tasks.size();
+    }
 
-		if (comparator == null) {
-			comparator = PredefinedSorters.DEFAULT;
-		}
+    @Override
+    public List<Task> getTasks() {
+        return getTasks(null, null);
+    }
 
-		Collections.sort(localTasks, comparator);
+    @Override
+    public List<Task> getTasks(Filter<Task> filter, Comparator<Task> comparator) {
+        ArrayList<Task> localTasks = new ArrayList<Task>();
+        if (filter != null) {
+            for (Task t : tasks) {
+                if (filter.apply(t)) {
+                    localTasks.add(t);
+                }
+            }
+        } else {
+            localTasks.addAll(tasks);
+        }
 
-		return localTasks;
-	}
+        if (comparator == null) {
+            comparator = PredefinedSorters.DEFAULT;
+        }
 
-	@Override
-	public Task addAsTask(String input) {
-		try {
-			//reload();
-			Task task = new Task(tasks.size(), input, new Date());
-			tasks.add(task);
-			lastChange = new Date();
-			return task;
-			//store();
-		} catch (Exception e) {
-			throw new TaskPersistException("An error occurred while adding {"
-					+ input + "}", e);
-		}
-	}
+        Collections.sort(localTasks, comparator);
 
-	@Override
-	public void update(Task task) {
-		lastChange = new Date();
-		if (task == null) return;
-		try {
-			//reload();
-			Task found = JdotxtTaskBagImpl.find(tasks, task);
-			if (found != null) {
-				task.copyInto(found);
-				// Log.i(TAG, "copied into found {" + found + "}");
-				// store();
-			} else {
-				throw new TaskPersistException("Task not found, not updated");
-			}
-		} catch (Exception e) {
-			throw new TaskPersistException(
-					"An error occurred while updating Task {" + task + "}", e);
-		}
-	}
+        return localTasks;
+    }
 
-	@Override
-	public void delete(Task task) {
-		try {
-			//reload();
-			Task found = JdotxtTaskBagImpl.find(tasks, task);
-			if (found != null) {
-				tasks.remove(found);
-				lastChange = new Date();
-				//store();
-			} else {
-				throw new TaskPersistException("Task not found, not deleted");
-			}
-		} catch (Exception e) {
-			throw new TaskPersistException(
-					"An error occurred while deleting Task {" + task + "}", e);
-		}
-	}
+    @Override
+    public Task addAsTask(String input) {
+        try {
+            //reload();
+            Task task = new Task(tasks.size(), input, new Date());
+            tasks.add(task);
+            lastChange = new Date();
+            return task;
+            //store();
+        } catch (Exception e) {
+            throw new TaskPersistException("An error occurred while adding {"
+                    + input + "}", e);
+        }
+    }
 
-	@Override
-	public void pushToRemote(boolean overwrite) { /* Remote API not implemented*/ }
-	@Override
-	public void pushToRemote(boolean overridePreference, boolean overwrite) { /* Remote API not implemented*/ }
-	@Override
-	public void pullFromRemote() { /* Remote API not implemented*/ }
-	@Override
-	public void pullFromRemote(boolean overridePreference) { /* Remote API not implemented*/ }
+    @Override
+    public void update(Task task) {
+        lastChange = new Date();
+        if (task == null) return;
+        try {
+            //reload();
+            Task found = JdotxtTaskBagImpl.find(tasks, task);
+            if (found != null) {
+                task.copyInto(found);
+                // Log.i(TAG, "copied into found {" + found + "}");
+                // store();
+            } else {
+                throw new TaskPersistException("Task not found, not updated");
+            }
+        } catch (Exception e) {
+            throw new TaskPersistException(
+                    "An error occurred while updating Task {" + task + "}", e);
+        }
+    }
 
-	@Override
-	public ArrayList<Priority> getPriorities() {
-		// TODO cache this after reloads?
-		Set<Priority> res = new HashSet<Priority>();
-		for (Task item : tasks) {
-			res.add(item.getPriority());
-		}
-		ArrayList<Priority> ret = new ArrayList<Priority>(res);
-		Collections.sort(ret);
-		return ret;
-	}
+    @Override
+    public void delete(Task task) {
+        try {
+            //reload();
+            Task found = JdotxtTaskBagImpl.find(tasks, task);
+            if (found != null) {
+                tasks.remove(found);
+                lastChange = new Date();
+                //store();
+            } else {
+                throw new TaskPersistException("Task not found, not deleted");
+            }
+        } catch (Exception e) {
+            throw new TaskPersistException(
+                    "An error occurred while deleting Task {" + task + "}", e);
+        }
+    }
 
-	@Override
-	public ArrayList<String> getContexts(boolean includeNone) {
-		// TODO cache this after reloads?
-		Set<String> res = new HashSet<String>();
-		for (Task item : tasks) {
-			res.addAll(item.getContexts());
-		}
-		ArrayList<String> ret = new ArrayList<String>(res);
-		Collections.sort(ret);
-		if (includeNone) {
-			ret.add(0, "-");
-		}
-		return ret;
-	}
+    @Override
+    public void pushToRemote(boolean overwrite) { /* Remote API not implemented*/ }
+    @Override
+    public void pushToRemote(boolean overridePreference, boolean overwrite) { /* Remote API not implemented*/ }
+    @Override
+    public void pullFromRemote() { /* Remote API not implemented*/ }
+    @Override
+    public void pullFromRemote(boolean overridePreference) { /* Remote API not implemented*/ }
 
-	@Override
-	public ArrayList<String> getProjects(boolean includeNone) {
-		// TODO cache this after reloads?
-		Set<String> res = new HashSet<String>();
-		for (Task item : tasks) {
-			res.addAll(item.getProjects());
-		}
-		ArrayList<String> ret = new ArrayList<String>(res);
-		Collections.sort(ret);
-		if (includeNone) {
-			ret.add(0, "-");
-		}
-		return ret;
-	}
+    @Override
+    public ArrayList<Priority> getPriorities() {
+        // TODO cache this after reloads?
+        Set<Priority> res = new HashSet<Priority>();
+        for (Task item : tasks) {
+            res.add(item.getPriority());
+        }
+        ArrayList<Priority> ret = new ArrayList<Priority>(res);
+        Collections.sort(ret);
+        return ret;
+    }
 
-	private static Task find(List<Task> tasks, Task task) {
-		Task partialMatch1 = null;
-		Task partialMatch2 = null;
-		for (Task task2 : tasks) {
-			if (task2 == task) {
-				return task2;
-			}
-			if (task2.getText().equals(task.getOriginalText())) {
-				if (task2.getPriority() == task.getOriginalPriority()) {
-					partialMatch1 = task2;
-					if (task2.getId() == task.getId()) return task2;
-				}
+    @Override
+    public ArrayList<String> getContexts(boolean includeNone) {
+        // TODO cache this after reloads?
+        Set<String> res = new HashSet<String>();
+        for (Task item : tasks) {
+            res.addAll(item.getContexts());
+        }
+        ArrayList<String> ret = new ArrayList<String>(res);
+        Collections.sort(ret);
+        if (includeNone) {
+            ret.add(0, "-");
+        }
+        return ret;
+    }
 
-				// We prefer to find an exact match (both text and priority are
-				// the same), but it is possible that priority has been lost
-				// because the task has been completed, so we will consider
-				// partial matches as a last resort.
-				partialMatch2 = task2;
-			}
-		}
-		if (partialMatch1 != null) return partialMatch1;
-		return partialMatch2;
-	}
-	
-	public boolean hasChanged(){
-		return (lastChange != null);
-	}
+    @Override
+    public ArrayList<String> getProjects(boolean includeNone) {
+        // TODO cache this after reloads?
+        Set<String> res = new HashSet<String>();
+        for (Task item : tasks) {
+            res.addAll(item.getProjects());
+        }
+        ArrayList<String> ret = new ArrayList<String>(res);
+        Collections.sort(ret);
+        if (includeNone) {
+            ret.add(0, "-");
+        }
+        return ret;
+    }
+
+    private static Task find(List<Task> tasks, Task task) {
+        Task partialMatch1 = null;
+        Task partialMatch2 = null;
+        for (Task task2 : tasks) {
+            if (task2 == task) {
+                return task2;
+            }
+            if (task2.getText().equals(task.getOriginalText())) {
+                if (task2.getPriority() == task.getOriginalPriority()) {
+                    partialMatch1 = task2;
+                    if (task2.getId() == task.getId()) return task2;
+                }
+
+                // We prefer to find an exact match (both text and priority are
+                // the same), but it is possible that priority has been lost
+                // because the task has been completed, so we will consider
+                // partial matches as a last resort.
+                partialMatch2 = task2;
+            }
+        }
+        if (partialMatch1 != null) return partialMatch1;
+        return partialMatch2;
+    }
+
+    public boolean hasChanged(){
+        return (lastChange != null);
+    }
 
 }

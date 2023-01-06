@@ -1,6 +1,7 @@
 package com.chschmid.jdotxt.gui.controls;
 
 import com.chschmid.jdotxt.gui.JdotxtGUI;
+import com.chschmid.jdotxt.gui.utils.UtilGUI;
 import com.todotxt.todotxttouch.task.sorter.Sorters;
 
 import javax.swing.*;
@@ -12,11 +13,13 @@ import java.util.*;
 public class JdotxtSortDialog extends JDialog {
 
     Map<Sorters, Boolean> sort;
-    private Vector<Vector> sortDisplay, addDisplay;
+    private Vector<Vector> sortDisplay;
+    private Vector<Vector> addDisplay;
     private Vector<Map.Entry<Sorters, Boolean>> sortList = new Vector<>();
     private Vector<Sorters> addList = new Vector<>();
 
-    private JTable current, add;
+    private JTable current;
+    private JTable add;
     private JButton saveButton;
     private JTextField name;
     private String nameStr;
@@ -206,7 +209,7 @@ public class JdotxtSortDialog extends JDialog {
     }
 
     public JButton getOk() {
-        return ok;
+        return (JButton) UtilGUI.cloneObject(ok);
     }
     static class EditDisabledTableModel extends DefaultTableModel {
 
@@ -235,7 +238,7 @@ public class JdotxtSortDialog extends JDialog {
 
 
     public JButton getSaveButton() {
-        return saveButton;
+        return (JButton) UtilGUI.cloneObject(saveButton);
     }
 
     public String getSortName() {

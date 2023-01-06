@@ -28,13 +28,13 @@ package com.todotxt.todotxttouch.task;
  * @author Tim Barlotta
  */
 public interface Filter<T> {
-	/**
-	 * Apply the filter
-	 * 
-	 * @param input
-	 *            the object to apply the filter to
-	 * @return <code>true</code> if the object in question meets the filter
-	 *         criteria, <code>false</code> otherwise
-	 */
-	boolean apply(T input);
+    /**
+     * Apply the filter
+     * 
+     * @param input
+     *            the object to apply the filter to
+     * @return <code>true</code> if the object in question meets the filter
+     *         criteria, <code>false</code> otherwise
+     */
+    boolean apply(T input);
 }

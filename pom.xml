@@ -13,6 +13,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <powermock.version>2.0.9</powermock.version>
+        <surefire.plugin.version>3.0.0-M7</surefire.plugin.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
     </properties>
 
     <repositories>
@@ -27,6 +30,18 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
@@ -49,10 +64,55 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.12.1</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <configLocation>${basedir}/rulesets/checkstyle-rules.xml</configLocation>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>10.3.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
+                <version>4.7.2.0</version>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,6 +124,31 @@
                     <encoding>UTF-8</encoding>
                     <debug>false</debug>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/chschmid/**/*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--plugin>
@@ -111,6 +196,59 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.10.0</version>
+                <dependencies>
+                    <!-- The following dependency must be included to support JUnit 5 -->
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <excludedClasses>
+                        <!-- copyFileTest(com.todotxt.todotxttouch.util.UtilTest) -->
+                        <param>com.chschmid.jdotxt*</param>
+                    </excludedClasses>
+                    <excludedTestClasses>
+                        <!-- copyFileTest(com.todotxt.todotxttouch.util.UtilTest) -->
+                        <param>com.chschmid.jdotxt*</param>
+                    </excludedTestClasses>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <configLocation>${basedir}/rulesets/checkstyle-rules.xml</configLocation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <includeFilterFile>rulesets/spotbugs-rules.xml</includeFilterFile>
+                </configuration>
+                <version>4.7.2.0</version>
+            </plugin>
+
+            <plugin> <!-- JUnit report -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${surefire.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

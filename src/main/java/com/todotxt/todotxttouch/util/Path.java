@@ -23,28 +23,28 @@
 package com.todotxt.todotxttouch.util;
 
 public class Path {
-	public static String fileName(String path) {
-		if (!Strings.isBlank(path)) {
-			// adapted from DropboxAPI.java v1.5.4
-			if (path.endsWith("/")) {
-				path = path.substring(0, path.length() - 1);
-			}
-			int ind = path.lastIndexOf('/');
-			return path.substring(ind + 1, path.length());
-		}
-		return "";
-	}
+    public static String fileName(String path) {
+        if (!Strings.isBlank(path)) {
+            // adapted from DropboxAPI.java v1.5.4
+            if (path.endsWith("/")) {
+                path = path.substring(0, path.length() - 1);
+            }
+            int ind = path.lastIndexOf('/');
+            return path.substring(ind + 1, path.length());
+        }
+        return "";
+    }
 
-	public static String parentPath(String path) {
-		// adapted from DropboxAPI.java v1.5.4
-		if (Strings.isBlank(path) || path.equals("/")) {
-			return "";
-		} else {
-			if (path.endsWith("/")) {
-				path = path.substring(0, path.length() - 1);
-			}
-			int ind = path.lastIndexOf('/');
-			return path.substring(0, ind + 1);
-		}
-	}
+    public static String parentPath(String path) {
+        // adapted from DropboxAPI.java v1.5.4
+        if (Strings.isBlank(path) || path.equals("/")) {
+            return "";
+        } else {
+            if (path.endsWith("/")) {
+                path = path.substring(0, path.length() - 1);
+            }
+            int ind = path.lastIndexOf('/');
+            return path.substring(0, ind + 1);
+        }
+    }
 }

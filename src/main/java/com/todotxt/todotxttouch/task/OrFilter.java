@@ -31,25 +31,25 @@ import java.util.ArrayList;
  * @author Tim Barlotta
  */
 class OrFilter implements Filter<Task> {
-	private ArrayList<Filter<Task>> filters = new ArrayList<Filter<Task>>();
+    private ArrayList<Filter<Task>> filters = new ArrayList<Filter<Task>>();
 
-	public void addFilter(Filter<Task> filter) {
-		if (filter != null) {
-			filters.add(filter);
-		}
-	}
+    public void addFilter(Filter<Task> filter) {
+        if (filter != null) {
+            filters.add(filter);
+        }
+    }
 
-	@Override
-	public boolean apply(Task input) {
-		if (filters.size() <= 0) {
-			return true;
-		}
+    @Override
+    public boolean apply(Task input) {
+        if (filters.size() <= 0) {
+            return true;
+        }
 
-		for (Filter<Task> f : filters) {
-			if (f.apply(input)) {
-				return true;
-			}
-		}
-		return false;
-	}
+        for (Filter<Task> f : filters) {
+            if (f.apply(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

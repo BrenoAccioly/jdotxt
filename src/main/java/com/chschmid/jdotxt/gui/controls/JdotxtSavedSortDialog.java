@@ -2,6 +2,7 @@ package com.chschmid.jdotxt.gui.controls;
 
 
 import com.chschmid.jdotxt.gui.JdotxtGUI;
+import com.chschmid.jdotxt.gui.utils.UtilGUI;
 import com.todotxt.todotxttouch.task.sorter.Sorters;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class JdotxtSavedSortDialog extends JDialog {
     }
 
     public Map<String, Map<Sorters, Boolean>> getSorts() {
-        return sorts;
+        return new HashMap<>(sorts);
     }
 
     private void initGUI() {
